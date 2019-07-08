@@ -28,11 +28,7 @@ public class Window
 		if (window == NULL)
 			throw new RuntimeException("Failed to create the window");
 		
-		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		if (vidmode != null)
-		{
-			glfwSetWindowPos(window, (vidmode.width() - w) / 2, (vidmode.height() - h) / 2);
-		}
+		centerPos(w, h);
 		
 		glfwMakeContextCurrent(window);
 		
@@ -46,6 +42,26 @@ public class Window
 		this.setClearColor(0, 0, 0);
 		
 		glOrtho(0.f, w, h, 0.f, 0.f, 1.f);
+	}
+	
+	public void setSize(int w, int h)
+	{
+		glfwSetWindowSize(window, w, h);
+		centerPos(w, h);
+	}
+	
+	public void setTitle(String title)
+	{
+		glfwSetWindowTitle(window, title);
+	}
+	
+	private void centerPos(int w, int h)
+	{
+		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		if (vidmode != null)
+		{
+			glfwSetWindowPos(window, (vidmode.width() - w) / 2, (vidmode.height() - h) / 2);
+		}
 	}
 	
 	public long getRawWindow()

@@ -7,24 +7,20 @@ import fr.cyphall.cyphallengine2d.management.TextureDataManager;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class Game
+public abstract class Game
 {
 	public Game()
 	{
 		glfwInit();
 		
 		Provider.provideWindow(new Window(800, 600, "CyphallEngine2D"));
-		Provider.window().setVisible(true);
 		
 		Provider.provideTextureDataManager(new TextureDataManager());
 		
 		Provider.provideGameSettings(new GameSettings());
 	}
 	
-	public void init()
-	{
-	
-	}
+	public abstract void init();
 	
 	public void loop()
 	{
@@ -50,12 +46,10 @@ public class Game
 		glfwTerminate();
 	}
 	
-	public static void main(String[] args)
+	public void run()
 	{
-		Game game = new Game();
-		
-		game.init();
-		game.loop();
-		game.quit();
+		init();
+		loop();
+		quit();
 	}
 }
