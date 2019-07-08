@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class Player extends Entity implements Drawable, Collidable
 {
-	private ArrayList<Texture> textures = new ArrayList<>();
-	private ArrayList<Hitbox> hitboxes = new ArrayList<>();
+	private final ArrayList<Texture> textures = new ArrayList<>();
+	private final ArrayList<Hitbox> hitboxes = new ArrayList<>();
 	
 	public Player()
 	{

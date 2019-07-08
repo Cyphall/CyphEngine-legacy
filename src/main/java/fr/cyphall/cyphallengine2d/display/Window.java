@@ -13,7 +13,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window
 {
-	private long window;
+	private final long window;
 	
 	private int target_fps = 60;
 	private float fps = 0;
@@ -80,6 +80,7 @@ public class Window
 		if (target_fps > 0)
 		{
 			long waitUntil = timeAtLastTick + 1000000000 / target_fps;
+			//noinspection StatementWithEmptyBody
 			while (System.nanoTime() < waitUntil)
 			{
 			

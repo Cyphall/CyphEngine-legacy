@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Text extends Entity implements Drawable
 {
-	private ArrayList<Texture> chars = new ArrayList<>();
+	private final ArrayList<Texture> chars = new ArrayList<>();
 	
 	int size;
 	

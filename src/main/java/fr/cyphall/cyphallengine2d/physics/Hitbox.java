@@ -2,10 +2,10 @@ package fr.cyphall.cyphallengine2d.physics;
 
 public class Hitbox
 {
-	private int left;
-	private int top;
-	private int right;
-	private int bottom;
+	private final int left;
+	private final int top;
+	private final int right;
+	private final int bottom;
 	
 	public Hitbox(int left, int top, int right, int bottom)
 	{
@@ -40,6 +40,7 @@ public class Hitbox
 		if (this.getLeft() > hb.getRight()) return false;
 		if (this.getRight() < hb.getLeft()) return false;
 		if (this.getTop() > hb.getBottom()) return false;
+		//noinspection RedundantIfStatement
 		if (this.getBottom() < hb.getTop()) return false;
 		
 		return true;

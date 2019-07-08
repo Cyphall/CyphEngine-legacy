@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class TextureDataManager
 {
-	private HashMap<String, TextureData> data = new HashMap<>();
+	private final HashMap<String, TextureData> data = new HashMap<>();
 	
 	public TextureDataManager()
 	{

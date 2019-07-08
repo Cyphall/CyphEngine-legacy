@@ -9,7 +9,7 @@ public class Texture
 	public static final int BOTH = 3;
 	
 	
-	private TextureData data;
+	private final TextureData data;
 	
 	private int width;
 	private int height;

@@ -21,7 +21,7 @@ public class Game
 		Provider.provideGameSettings(new GameSettings());
 	}
 	
-	protected void init()
+	public void init()
 	{
 	
 	}
