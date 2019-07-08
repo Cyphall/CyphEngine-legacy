@@ -1,25 +1,29 @@
-package fr.cyphall.bullethell.core;
+package fr.cyphall.cyphallengine2d.core;
 
-import fr.cyphall.bullethell.display.Window;
-import fr.cyphall.bullethell.entity.Player;
-import fr.cyphall.bullethell.entity.Text;
-import fr.cyphall.bullethell.management.GameSettings;
-import fr.cyphall.bullethell.management.TextureDataManager;
+import fr.cyphall.cyphallengine2d.display.Window;
+import fr.cyphall.cyphallengine2d.entity.Text;
+import fr.cyphall.cyphallengine2d.management.GameSettings;
+import fr.cyphall.cyphallengine2d.management.TextureDataManager;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Game
 {
-	public Game(int w, int h, String title)
+	public Game()
 	{
 		glfwInit();
 		
-		Provider.provideWindow(new Window(w, h, title));
+		Provider.provideWindow(new Window(800, 600, "CyphallEngine2D"));
 		Provider.window().setVisible(true);
 		
 		Provider.provideTextureDataManager(new TextureDataManager());
 		
 		Provider.provideGameSettings(new GameSettings());
+	}
+	
+	protected void init()
+	{
+	
 	}
 	
 	public void loop()
@@ -44,5 +48,14 @@ public class Game
 	public void quit()
 	{
 		glfwTerminate();
+	}
+	
+	public static void main(String[] args)
+	{
+		Game game = new Game();
+		
+		game.init();
+		game.loop();
+		game.quit();
 	}
 }

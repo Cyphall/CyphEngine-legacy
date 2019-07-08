@@ -1,9 +1,9 @@
-package fr.cyphall.bullethell.display;
+package fr.cyphall.cyphallengine2d.display;
 
-import fr.cyphall.bullethell.core.Provider;
-import fr.cyphall.bullethell.interfaces.Collidable;
-import fr.cyphall.bullethell.interfaces.Drawable;
-import fr.cyphall.bullethell.physics.Hitbox;
+import fr.cyphall.cyphallengine2d.core.Provider;
+import fr.cyphall.cyphallengine2d.interfaces.Collidable;
+import fr.cyphall.cyphallengine2d.interfaces.Drawable;
+import fr.cyphall.cyphallengine2d.physics.Hitbox;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 

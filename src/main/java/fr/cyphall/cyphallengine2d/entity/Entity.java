@@ -1,6 +1,6 @@
-package fr.cyphall.bullethell.entity;
+package fr.cyphall.cyphallengine2d.entity;
 
-import fr.cyphall.bullethell.interfaces.Positionable;
+import fr.cyphall.cyphallengine2d.interfaces.Positionable;
 
 public abstract class Entity implements Positionable
 {

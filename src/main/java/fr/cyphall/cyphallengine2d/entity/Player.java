@@ -1,9 +1,9 @@
-package fr.cyphall.bullethell.entity;
+package fr.cyphall.cyphallengine2d.entity;
 
-import fr.cyphall.bullethell.display.Texture;
-import fr.cyphall.bullethell.interfaces.Collidable;
-import fr.cyphall.bullethell.interfaces.Drawable;
-import fr.cyphall.bullethell.physics.Hitbox;
+import fr.cyphall.cyphallengine2d.display.Texture;
+import fr.cyphall.cyphallengine2d.interfaces.Collidable;
+import fr.cyphall.cyphallengine2d.interfaces.Drawable;
+import fr.cyphall.cyphallengine2d.physics.Hitbox;
 
 import java.util.ArrayList;
 

@@ -1,14 +1,12 @@
 package fr.cyphall.bullethell;
 
-import fr.cyphall.bullethell.core.Game;
+import fr.cyphall.cyphallengine2d.core.Game;
 
-public class Main
+public class Main extends Game
 {
-	public static void main(String[] args)
+	@Override
+	public void init()
 	{
-		Game game = new Game(400, 600, "Bullet Hell");
-		
-		game.loop();
-		game.quit();
+	
 	}
 }

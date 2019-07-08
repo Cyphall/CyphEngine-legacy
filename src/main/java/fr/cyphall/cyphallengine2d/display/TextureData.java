@@ -1,4 +1,4 @@
-package fr.cyphall.bullethell.display;
+package fr.cyphall.cyphallengine2d.display;
 
 import org.lwjgl.BufferUtils;
 

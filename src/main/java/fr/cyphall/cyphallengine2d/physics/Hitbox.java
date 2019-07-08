@@ -1,4 +1,4 @@
-package fr.cyphall.bullethell.physics;
+package fr.cyphall.cyphallengine2d.physics;
 
 public class Hitbox
 {

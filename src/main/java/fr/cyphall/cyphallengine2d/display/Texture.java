@@ -1,6 +1,6 @@
-package fr.cyphall.bullethell.display;
+package fr.cyphall.cyphallengine2d.display;
 
-import fr.cyphall.bullethell.core.Provider;
+import fr.cyphall.cyphallengine2d.core.Provider;
 
 public class Texture
 {

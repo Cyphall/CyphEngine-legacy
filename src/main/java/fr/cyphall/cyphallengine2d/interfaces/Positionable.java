@@ -1,4 +1,4 @@
-package fr.cyphall.bullethell.interfaces;
+package fr.cyphall.cyphallengine2d.interfaces;
 
 public interface Positionable
 {

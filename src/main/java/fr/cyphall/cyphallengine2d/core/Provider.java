@@ -1,8 +1,8 @@
-package fr.cyphall.bullethell.core;
+package fr.cyphall.cyphallengine2d.core;
 
-import fr.cyphall.bullethell.display.Window;
-import fr.cyphall.bullethell.management.GameSettings;
-import fr.cyphall.bullethell.management.TextureDataManager;
+import fr.cyphall.cyphallengine2d.display.Window;
+import fr.cyphall.cyphallengine2d.management.GameSettings;
+import fr.cyphall.cyphallengine2d.management.TextureDataManager;
 
 public class Provider
 {

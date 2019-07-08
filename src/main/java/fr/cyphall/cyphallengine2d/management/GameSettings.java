@@ -1,4 +1,4 @@
-package fr.cyphall.bullethell.management;
+package fr.cyphall.cyphallengine2d.management;
 
 public class GameSettings
 {

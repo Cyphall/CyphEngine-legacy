@@ -1,6 +1,6 @@
-package fr.cyphall.bullethell.interfaces;
+package fr.cyphall.cyphallengine2d.interfaces;
 
-import fr.cyphall.bullethell.display.Texture;
+import fr.cyphall.cyphallengine2d.display.Texture;
 
 import java.util.ArrayList;
 

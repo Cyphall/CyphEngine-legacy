@@ -1,6 +1,6 @@
-package fr.cyphall.bullethell.interfaces;
+package fr.cyphall.cyphallengine2d.interfaces;
 
-import fr.cyphall.bullethell.physics.Hitbox;
+import fr.cyphall.cyphallengine2d.physics.Hitbox;
 
 import java.util.ArrayList;
 

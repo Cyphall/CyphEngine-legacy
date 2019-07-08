@@ -1,6 +1,6 @@
-package fr.cyphall.bullethell.management;
+package fr.cyphall.cyphallengine2d.management;
 
-import fr.cyphall.bullethell.display.TextureData;
+import fr.cyphall.cyphallengine2d.display.TextureData;
 
 import java.io.File;
 import java.util.HashMap;
