@@ -9,6 +9,7 @@ public class ToolBox
 	private static Window window = null;
 	private static TextureDataManager tdm = null;
 	private static SettingManager settings = null;
+	private static Scene currentScene = null;
 	
 	public static void setWindow(Window w)
 	{
@@ -22,6 +23,10 @@ public class ToolBox
 	{
 		ToolBox.settings = s;
 	}
+	public static void setCurrentScene(Scene s)
+	{
+		ToolBox.currentScene = s;
+	}
 	
 	public static Window window()
 	{
@@ -34,5 +39,9 @@ public class ToolBox
 	public static SettingManager settings()
 	{
 		return settings;
+	}
+	public static Scene currentScene()
+	{
+		return currentScene;
 	}
 }

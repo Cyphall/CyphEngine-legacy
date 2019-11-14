@@ -1,9 +1,9 @@
 package fr.cyphall.cyphallengine2d.display;
 
+import fr.cyphall.cyphallengine2d.component.Hitbox;
+import fr.cyphall.cyphallengine2d.component.SpriteRenderer;
 import fr.cyphall.cyphallengine2d.core.ToolBox;
-import fr.cyphall.cyphallengine2d.interfaces.Collidable;
-import fr.cyphall.cyphallengine2d.interfaces.Drawable;
-import fr.cyphall.cyphallengine2d.physics.Hitbox;
+import fr.cyphall.cyphallengine2d.entity.Entity;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
@@ -118,52 +118,56 @@ public class Window
 		return fps;
 	}
 	
-	public void temp_render(Drawable drawable)
+	public void render()
 	{
+		
 		glEnable(GL_TEXTURE_2D);
 		
 		glColor4f(1, 1, 1, 1);
-		for (Texture tex : drawable.getTextures())
+		for (SpriteRenderer sprite : SpriteRenderer.getInstances())
 		{
-			tex.bind();
+			sprite.getTexture().bind();
 			glBegin(GL_QUADS);
 				glTexCoord2i(0, 0);
-				glVertex2i(Math.round(drawable.getPosX() + tex.getLeft()), Math.round(drawable.getPosY() + tex.getTop()));
+				glVertex2i(Math.round(sprite.getEntity().getAbsolutePos().x - sprite.getSize().x / 2.0f), Math.round(sprite.getEntity().getAbsolutePos().y - sprite.getSize().y / 2.0f));
 				
 				glTexCoord2i(1, 0);
-				glVertex2i(Math.round(drawable.getPosX() + tex.getRight()), Math.round(drawable.getPosY() + tex.getTop()));
+				glVertex2i(Math.round(sprite.getEntity().getAbsolutePos().x + sprite.getSize().x / 2.0f), Math.round(sprite.getEntity().getAbsolutePos().y - sprite.getSize().y / 2.0f));
 				
 				glTexCoord2i(1, 1);
-				glVertex2i(Math.round(drawable.getPosX() + tex.getRight()), Math.round(drawable.getPosY() + tex.getBottom()));
+				glVertex2i(Math.round(sprite.getEntity().getAbsolutePos().x + sprite.getSize().x / 2.0f), Math.round(sprite.getEntity().getAbsolutePos().y + sprite.getSize().y / 2.0f));
 				
 				glTexCoord2i(0, 1);
-				glVertex2i(Math.round(drawable.getPosX() + tex.getLeft()), Math.round(drawable.getPosY() + tex.getBottom()));
+				glVertex2i(Math.round(sprite.getEntity().getAbsolutePos().x - sprite.getSize().x / 2.0f), Math.round(sprite.getEntity().getAbsolutePos().y + sprite.getSize().y / 2.0f));
 			glEnd();
 		}
 		glDisable(GL_TEXTURE_2D);
 		
 		if (ToolBox.settings().getBoolean("debug", "showPosition"))
 		{
-			glBegin(GL_QUADS);
+			for (Entity entity : ToolBox.currentScene().getEntities())
+			{
+				glBegin(GL_QUADS);
 				glColor4f(1, 0, 0, 1);
-				glVertex2i(Math.round(drawable.getPosX() - 2), Math.round(drawable.getPosY() - 2));
-				glVertex2i(Math.round(drawable.getPosX() + 2), Math.round(drawable.getPosY() - 2));
-				glVertex2i(Math.round(drawable.getPosX() + 2), Math.round(drawable.getPosY() + 2));
-				glVertex2i(Math.round(drawable.getPosX() - 2), Math.round(drawable.getPosY() + 2));
-			glEnd();
+					glVertex2i(Math.round(entity.getAbsolutePos().x - 2), Math.round(entity.getAbsolutePos().y - 2));
+					glVertex2i(Math.round(entity.getAbsolutePos().x + 2), Math.round(entity.getAbsolutePos().y - 2));
+					glVertex2i(Math.round(entity.getAbsolutePos().x + 2), Math.round(entity.getAbsolutePos().y + 2));
+					glVertex2i(Math.round(entity.getAbsolutePos().x - 2), Math.round(entity.getAbsolutePos().y + 2));
+				glEnd();
+			}
 		}
 		
-		if (drawable instanceof Collidable && ToolBox.settings().getBoolean("debug", "showCollision"))
+		if (ToolBox.settings().getBoolean("debug", "showCollision"))
 		{
-			for (Hitbox hb : ((Collidable)drawable).getHitboxes())
+			for (Hitbox hitbox : Hitbox.getInstances())
 			{
 				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 				glBegin(GL_QUADS);
-				glColor4f(0, 1, 0, 1);
-				glVertex2i(Math.round(drawable.getPosX() + hb.getLeft()), Math.round(drawable.getPosY() + hb.getTop()));
-				glVertex2i(Math.round(drawable.getPosX() + hb.getRight()), Math.round(drawable.getPosY() + hb.getTop()));
-				glVertex2i(Math.round(drawable.getPosX() + hb.getRight()), Math.round(drawable.getPosY() + hb.getBottom()));
-				glVertex2i(Math.round(drawable.getPosX() + hb.getLeft()), Math.round(drawable.getPosY() + hb.getBottom()));
+					glColor4f(0, 1, 0, 1);
+					glVertex2f(Math.round(hitbox.getEntity().getAbsolutePos().x - hitbox.getLeft()), Math.round(hitbox.getEntity().getAbsolutePos().y - hitbox.getTop()));
+					glVertex2f(Math.round(hitbox.getEntity().getAbsolutePos().x - hitbox.getRight()), Math.round(hitbox.getEntity().getAbsolutePos().y - hitbox.getTop()));
+					glVertex2f(Math.round(hitbox.getEntity().getAbsolutePos().x - hitbox.getRight()), Math.round(hitbox.getEntity().getAbsolutePos().y - hitbox.getBottom()));
+					glVertex2f(Math.round(hitbox.getEntity().getAbsolutePos().x - hitbox.getLeft()), Math.round(hitbox.getEntity().getAbsolutePos().y - hitbox.getBottom()));
 				glEnd();
 				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			}

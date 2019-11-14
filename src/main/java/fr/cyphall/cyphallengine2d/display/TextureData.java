@@ -39,8 +39,8 @@ public class TextureData
 		
 		glBindTexture(GL_TEXTURE_2D, id);
 		
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		stbi_image_free(data);
@@ -61,18 +61,8 @@ public class TextureData
 		return width;
 	}
 	
-	public void setWidth(int width)
-	{
-		this.width = width;
-	}
-	
 	public int getHeight()
 	{
 		return height;
-	}
-	
-	public void setHeight(int height)
-	{
-		this.height = height;
 	}
 }

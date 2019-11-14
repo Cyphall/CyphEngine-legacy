@@ -12,7 +12,7 @@ public abstract class Game
 	{
 		glfwInit();
 		
-		ToolBox.setWindow(new Window(800, 600, "CyphallEngine2D"));
+		ToolBox.setWindow(new Window(600, 800, "CyphallEngine2D"));
 		
 		ToolBox.setTextureDataManager(new TextureDataManager());
 		
