@@ -1,6 +1,6 @@
 package fr.cyphall.cyphallengine2d.display;
 
-import fr.cyphall.cyphallengine2d.core.Provider;
+import fr.cyphall.cyphallengine2d.core.ToolBox;
 
 public class Texture
 {
@@ -27,7 +27,7 @@ public class Texture
 		offsetPosX = offX;
 		offsetPosY = offY;
 		
-		this.data = Provider.tdm().get(name);
+		this.data = ToolBox.tdm().get(name);
 		
 		width = data.getWidth();
 		height = data.getHeight();

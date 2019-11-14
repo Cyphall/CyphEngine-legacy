@@ -1,6 +1,6 @@
 package fr.cyphall.cyphallengine2d.display;
 
-import fr.cyphall.cyphallengine2d.core.Provider;
+import fr.cyphall.cyphallengine2d.core.ToolBox;
 import fr.cyphall.cyphallengine2d.interfaces.Collidable;
 import fr.cyphall.cyphallengine2d.interfaces.Drawable;
 import fr.cyphall.cyphallengine2d.physics.Hitbox;
@@ -142,7 +142,7 @@ public class Window
 		}
 		glDisable(GL_TEXTURE_2D);
 		
-		if (Provider.settings().showPosition)
+		if (ToolBox.settings().getBoolean("debug", "showPosition"))
 		{
 			glBegin(GL_QUADS);
 				glColor4f(1, 0, 0, 1);
@@ -153,7 +153,7 @@ public class Window
 			glEnd();
 		}
 		
-		if (drawable instanceof Collidable && Provider.settings().showCollision)
+		if (drawable instanceof Collidable && ToolBox.settings().getBoolean("debug", "showCollision"))
 		{
 			for (Hitbox hb : ((Collidable)drawable).getHitboxes())
 			{

@@ -2,3 +2,4 @@
 resources/stuff/
 resources/raw/
 target/
+*.iml

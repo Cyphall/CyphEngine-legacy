@@ -1,6 +1,7 @@
-package fr.cyphall.cyphallengine2d.entity;
+package fr.cyphall.cyphallengine2d.entity.preset;
 
 import fr.cyphall.cyphallengine2d.display.Texture;
+import fr.cyphall.cyphallengine2d.entity.Entity;
 import fr.cyphall.cyphallengine2d.interfaces.Drawable;
 
 import java.util.ArrayList;

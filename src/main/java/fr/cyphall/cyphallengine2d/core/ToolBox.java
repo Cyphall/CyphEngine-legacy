@@ -1,26 +1,26 @@
 package fr.cyphall.cyphallengine2d.core;
 
 import fr.cyphall.cyphallengine2d.display.Window;
-import fr.cyphall.cyphallengine2d.management.GameSettings;
+import fr.cyphall.cyphallengine2d.management.SettingManager;
 import fr.cyphall.cyphallengine2d.management.TextureDataManager;
 
-public class Provider
+public class ToolBox
 {
 	private static Window window = null;
 	private static TextureDataManager tdm = null;
-	private static GameSettings settings = null;
+	private static SettingManager settings = null;
 	
-	public static void provideWindow(Window w)
+	public static void setWindow(Window w)
 	{
 		window = w;
 	}
-	public static void provideTextureDataManager(TextureDataManager tdm)
+	public static void setTextureDataManager(TextureDataManager tdm)
 	{
-		Provider.tdm = tdm;
+		ToolBox.tdm = tdm;
 	}
-	public static void provideGameSettings(GameSettings s)
+	public static void setSettingManager(SettingManager s)
 	{
-		Provider.settings = s;
+		ToolBox.settings = s;
 	}
 	
 	public static Window window()
@@ -31,7 +31,7 @@ public class Provider
 	{
 		return tdm;
 	}
-	public static GameSettings settings()
+	public static SettingManager settings()
 	{
 		return settings;
 	}
