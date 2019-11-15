@@ -1,7 +1,7 @@
 package fr.cyphall.bullethell;
 
-import fr.cyphall.cyphallengine2d.component.Script;
-import fr.cyphall.cyphallengine2d.core.ToolBox;
+import fr.cyphall.cyphengine.component.Script;
+import fr.cyphall.cyphengine.core.ToolBox;
 import org.joml.Vector2f;
 
 public class ShipScript extends Script

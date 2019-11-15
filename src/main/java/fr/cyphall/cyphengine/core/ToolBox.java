@@ -1,9 +1,9 @@
-package fr.cyphall.cyphallengine2d.core;
+package fr.cyphall.cyphengine.core;
 
-import fr.cyphall.cyphallengine2d.display.Window;
-import fr.cyphall.cyphallengine2d.management.InputManager;
-import fr.cyphall.cyphallengine2d.management.SettingManager;
-import fr.cyphall.cyphallengine2d.management.TextureDataManager;
+import fr.cyphall.cyphengine.display.Window;
+import fr.cyphall.cyphengine.management.InputManager;
+import fr.cyphall.cyphengine.management.SettingManager;
+import fr.cyphall.cyphengine.management.TextureDataManager;
 
 public class ToolBox
 {

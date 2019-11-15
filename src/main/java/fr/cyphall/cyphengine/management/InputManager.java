@@ -1,6 +1,6 @@
-package fr.cyphall.cyphallengine2d.management;
+package fr.cyphall.cyphengine.management;
 
-import fr.cyphall.cyphallengine2d.core.ToolBox;
+import fr.cyphall.cyphengine.core.ToolBox;
 import org.lwjgl.glfw.GLFW;
 
 public class InputManager

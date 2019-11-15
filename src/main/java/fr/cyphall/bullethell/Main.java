@@ -1,15 +1,13 @@
 package fr.cyphall.bullethell;
 
-import fr.cyphall.cyphallengine2d.component.Hitbox;
-import fr.cyphall.cyphallengine2d.component.Script;
-import fr.cyphall.cyphallengine2d.component.SpriteRenderer;
-import fr.cyphall.cyphallengine2d.core.Game;
-import fr.cyphall.cyphallengine2d.core.Scene;
-import fr.cyphall.cyphallengine2d.core.ToolBox;
-import fr.cyphall.cyphallengine2d.entity.Entity;
+import fr.cyphall.cyphengine.component.Hitbox;
+import fr.cyphall.cyphengine.component.Script;
+import fr.cyphall.cyphengine.component.SpriteRenderer;
+import fr.cyphall.cyphengine.core.Game;
+import fr.cyphall.cyphengine.core.Scene;
+import fr.cyphall.cyphengine.core.ToolBox;
+import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2f;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWKeyCallback;
 
 import static org.lwjgl.glfw.GLFW.*;
 

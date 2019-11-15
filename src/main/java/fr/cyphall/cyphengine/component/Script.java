@@ -1,4 +1,4 @@
-package fr.cyphall.cyphallengine2d.component;
+package fr.cyphall.cyphengine.component;
 
 import java.util.ArrayList;
 

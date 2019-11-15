@@ -1,9 +1,6 @@
-package fr.cyphall.cyphallengine2d.component;
+package fr.cyphall.cyphengine.component;
 
-import fr.cyphall.cyphallengine2d.entity.Entity;
-
-import java.util.ArrayList;
-import java.util.List;
+import fr.cyphall.cyphengine.entity.Entity;
 
 public abstract class Component
 {

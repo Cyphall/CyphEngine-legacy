@@ -1,8 +1,7 @@
-package fr.cyphall.cyphallengine2d.component;
+package fr.cyphall.cyphengine.component;
 
-import fr.cyphall.cyphallengine2d.core.ToolBox;
-import fr.cyphall.cyphallengine2d.display.TextureData;
-import fr.cyphall.cyphallengine2d.entity.Entity;
+import fr.cyphall.cyphengine.core.ToolBox;
+import fr.cyphall.cyphengine.display.TextureData;
 import org.joml.Vector2i;
 
 import java.util.ArrayList;

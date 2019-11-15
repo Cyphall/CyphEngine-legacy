@@ -1,7 +1,6 @@
-package fr.cyphall.cyphallengine2d.core;
+package fr.cyphall.cyphengine.core;
 
-import fr.cyphall.cyphallengine2d.component.Component;
-import fr.cyphall.cyphallengine2d.entity.Entity;
+import fr.cyphall.cyphengine.entity.Entity;
 
 import java.util.ArrayList;
 

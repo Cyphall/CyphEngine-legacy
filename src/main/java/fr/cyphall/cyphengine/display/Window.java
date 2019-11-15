@@ -1,9 +1,9 @@
-package fr.cyphall.cyphallengine2d.display;
+package fr.cyphall.cyphengine.display;
 
-import fr.cyphall.cyphallengine2d.component.Hitbox;
-import fr.cyphall.cyphallengine2d.component.SpriteRenderer;
-import fr.cyphall.cyphallengine2d.core.ToolBox;
-import fr.cyphall.cyphallengine2d.entity.Entity;
+import fr.cyphall.cyphengine.component.Hitbox;
+import fr.cyphall.cyphengine.component.SpriteRenderer;
+import fr.cyphall.cyphengine.core.ToolBox;
+import fr.cyphall.cyphengine.entity.Entity;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 

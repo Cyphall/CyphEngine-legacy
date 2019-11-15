@@ -1,6 +1,6 @@
-package fr.cyphall.cyphallengine2d.entity;
+package fr.cyphall.cyphengine.entity;
 
-import fr.cyphall.cyphallengine2d.component.Component;
+import fr.cyphall.cyphengine.component.Component;
 import org.joml.Vector2f;
 
 import java.util.ArrayList;

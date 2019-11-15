@@ -1,6 +1,6 @@
-package fr.cyphall.cyphallengine2d.management;
+package fr.cyphall.cyphengine.management;
 
-import fr.cyphall.cyphallengine2d.display.TextureData;
+import fr.cyphall.cyphengine.display.TextureData;
 
 import java.io.File;
 import java.util.HashMap;

@@ -1,9 +1,6 @@
-package fr.cyphall.cyphallengine2d.component;
-
-import fr.cyphall.cyphallengine2d.entity.Entity;
+package fr.cyphall.cyphengine.component;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Hitbox extends Component
 {
