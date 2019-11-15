@@ -19,8 +19,8 @@ public class SpriteRenderer extends Component
 	{
 		this.data = ToolBox.tdm().get(textureName);
 		
-		size.x = data.getWidth() * ToolBox.settings().getInt("display", "scale");
-		size.y = data.getHeight() * ToolBox.settings().getInt("display", "scale");
+		size.x = data.getWidth() * ToolBox.settings().getInt("display", "pixelScale");
+		size.y = data.getHeight() * ToolBox.settings().getInt("display", "pixelScale");
 		
 		instances.add(this);
 	}

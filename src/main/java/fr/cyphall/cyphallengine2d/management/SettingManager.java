@@ -23,21 +23,57 @@ public class SettingManager
 	
 	public boolean getBoolean(String section, String option)
 	{
-		return ini == null ? false : ini.get(section, option, Boolean.class);
+		if (ini == null) return false;
+		try
+		{
+			return ini.get(section, option, Boolean.class);
+		}
+		catch(NullPointerException e)
+		{
+			System.err.println("Option \""+ option +"\" not found in section ["+ section +"]");
+			return false;
+		}
 	}
 	
 	public int getInt(String section, String option)
 	{
-		return ini == null ? 0 : ini.get(section, option, Integer.class);
+		if (ini == null) return 0;
+		try
+		{
+			return ini.get(section, option, Integer.class);
+		}
+		catch(NullPointerException e)
+		{
+			System.err.println("Option \""+ option +"\" not found in section ["+ section +"]");
+			return 0;
+		}
 	}
 	
 	public float getFloat(String section, String option)
 	{
-		return ini == null ? 0 : ini.get(section, option, Float.class);
+		if (ini == null) return 0;
+		try
+		{
+			return ini.get(section, option, Float.class);
+		}
+		catch(NullPointerException e)
+		{
+			System.err.println("Option \""+ option +"\" not found in section ["+ section +"]");
+			return 0;
+		}
 	}
 	
 	public double getDouble(String section, String option)
 	{
-		return ini == null ? 0 : ini.get(section, option, Double.class);
+		if (ini == null) return 0;
+		try
+		{
+			return ini.get(section, option, Double.class);
+		}
+		catch(NullPointerException e)
+		{
+			System.err.println("Option \""+ option +"\" not found in section ["+ section +"]");
+			return 0;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package fr.cyphall.cyphallengine2d.core;
 
 import fr.cyphall.cyphallengine2d.display.Window;
+import fr.cyphall.cyphallengine2d.management.InputManager;
 import fr.cyphall.cyphallengine2d.management.SettingManager;
 import fr.cyphall.cyphallengine2d.management.TextureDataManager;
 
@@ -17,6 +18,8 @@ public abstract class Game
 		ToolBox.setTextureDataManager(new TextureDataManager());
 		
 		ToolBox.setSettingManager(new SettingManager("./resources/settings.ini"));
+		
+		ToolBox.setInputManager(new InputManager());
 	}
 	
 	public void init(){}

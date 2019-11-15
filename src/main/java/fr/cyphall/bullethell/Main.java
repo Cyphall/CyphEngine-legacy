@@ -8,9 +8,10 @@ import fr.cyphall.cyphallengine2d.core.Scene;
 import fr.cyphall.cyphallengine2d.core.ToolBox;
 import fr.cyphall.cyphallengine2d.entity.Entity;
 import org.joml.Vector2f;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWKeyCallback;
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
 
 public class Main extends Game
 {
@@ -49,7 +50,7 @@ public class Main extends Game
 	{
 //		Text fps = new Text("", 10, 0, 0);
 		
-		while(!glfwWindowShouldClose(ToolBox.window().getRawWindow()))
+		while(!glfwWindowShouldClose(ToolBox.window().getHandler()))
 		{
 			ToolBox.window().clear();
 			glfwPollEvents();

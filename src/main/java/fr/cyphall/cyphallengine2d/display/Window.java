@@ -64,7 +64,7 @@ public class Window
 		}
 	}
 	
-	public long getRawWindow()
+	public long getHandler()
 	{
 		return window;
 	}

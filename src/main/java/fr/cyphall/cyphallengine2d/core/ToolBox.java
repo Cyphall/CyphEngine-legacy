@@ -1,6 +1,7 @@
 package fr.cyphall.cyphallengine2d.core;
 
 import fr.cyphall.cyphallengine2d.display.Window;
+import fr.cyphall.cyphallengine2d.management.InputManager;
 import fr.cyphall.cyphallengine2d.management.SettingManager;
 import fr.cyphall.cyphallengine2d.management.TextureDataManager;
 
@@ -9,6 +10,7 @@ public class ToolBox
 	private static Window window = null;
 	private static TextureDataManager tdm = null;
 	private static SettingManager settings = null;
+	private static InputManager inputs = null;
 	private static Scene currentScene = null;
 	
 	public static void setWindow(Window w)
@@ -22,6 +24,10 @@ public class ToolBox
 	public static void setSettingManager(SettingManager s)
 	{
 		ToolBox.settings = s;
+	}
+	public static void setInputManager(InputManager i)
+	{
+		ToolBox.inputs = i;
 	}
 	public static void setCurrentScene(Scene s)
 	{
@@ -39,6 +45,10 @@ public class ToolBox
 	public static SettingManager settings()
 	{
 		return settings;
+	}
+	public static InputManager inputs()
+	{
+		return inputs;
 	}
 	public static Scene currentScene()
 	{
