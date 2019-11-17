@@ -26,7 +26,8 @@ public class Main extends Game
 		ship.setRelativePos(new Vector2i(75, 50));
 		ship.addComponent(new SpriteRenderer("ship"));
 		ship.addComponent(new PlayerScript());
-		ship.addComponent(new Hitbox(-6, -6, 7, 7));
+		ship.addComponent(new Hitbox(-6, -1, 7, 7));
+		ship.addComponent(new Hitbox(-2, -6, 3, -1));
 		
 		Entity ship2 = new Entity("ally");
 		ship.addChild(ship2);

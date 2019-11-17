@@ -172,15 +172,15 @@ public class Window
 			{
 				glBegin(GL_QUADS);
 				glColor4f(1, 0, 0, 1);
-					glVertex2i((entity.getAbsolutePos().x - 1) * pixelScale, (entity.getAbsolutePos().y - 1) * pixelScale);
-					glVertex2i((entity.getAbsolutePos().x + 2) * pixelScale, (entity.getAbsolutePos().y - 1) * pixelScale);
-					glVertex2i((entity.getAbsolutePos().x + 2) * pixelScale, (entity.getAbsolutePos().y + 2) * pixelScale);
-					glVertex2i((entity.getAbsolutePos().x - 1) * pixelScale, (entity.getAbsolutePos().y + 2) * pixelScale);
+					glVertex3f((entity.getAbsolutePos().x - 1) * pixelScale, (entity.getAbsolutePos().y - 1) * pixelScale, -0.7f);
+					glVertex3f((entity.getAbsolutePos().x + 2) * pixelScale, (entity.getAbsolutePos().y - 1) * pixelScale, -0.7f);
+					glVertex3f((entity.getAbsolutePos().x + 2) * pixelScale, (entity.getAbsolutePos().y + 2) * pixelScale, -0.7f);
+					glVertex3f((entity.getAbsolutePos().x - 1) * pixelScale, (entity.getAbsolutePos().y + 2) * pixelScale, -0.7f);
 				glEnd();
 			}
 		}
 		
-		if (ToolBox.settings().getBoolean("debug", "showCollision"))
+		if (ToolBox.settings().getBoolean("debug", "showHitbox"))
 		{
 			for (Component component : ToolBox.currentScene().getComponentsByClass(Hitbox.class))
 			{
@@ -188,10 +188,10 @@ public class Window
 				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 				glBegin(GL_QUADS);
 					glColor4f(0, 1, 0, 1);
-					glVertex2f(hitbox.getAbsoluteLeft() * pixelScale + 0.01f, hitbox.getAbsoluteTop() * pixelScale + 0.01f);
-					glVertex2f(hitbox.getAbsoluteRight() * pixelScale - 0.01f, hitbox.getAbsoluteTop() * pixelScale + 0.01f);
-					glVertex2f(hitbox.getAbsoluteRight() * pixelScale - 0.01f, hitbox.getAbsoluteBottom() * pixelScale - 0.01f);
-					glVertex2f(hitbox.getAbsoluteLeft() * pixelScale + 0.01f, hitbox.getAbsoluteBottom() * pixelScale - 0.01f);
+					glVertex3f(hitbox.getAbsoluteLeft() * pixelScale + 0.01f, hitbox.getAbsoluteTop() * pixelScale + 0.01f, -0.6f);
+					glVertex3f(hitbox.getAbsoluteRight() * pixelScale - 0.01f, hitbox.getAbsoluteTop() * pixelScale + 0.01f, -0.6f);
+					glVertex3f(hitbox.getAbsoluteRight() * pixelScale - 0.01f, hitbox.getAbsoluteBottom() * pixelScale - 0.01f, -0.6f);
+					glVertex3f(hitbox.getAbsoluteLeft() * pixelScale + 0.01f, hitbox.getAbsoluteBottom() * pixelScale - 0.01f, -0.6f);
 				glEnd();
 				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			}
