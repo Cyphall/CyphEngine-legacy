@@ -44,7 +44,7 @@ public class PlayerScript extends Script
 	{
 		Entity bullet = new Entity("allyBullet", "bullet");
 		bullet.setRelativePos(new Vector2i(entity.getAbsolutePos()).add(new Vector2i(0, -1)));
-		bullet.addComponent(new SpriteRenderer("bullet"));
+		bullet.addComponent(new SpriteRenderer("bullet", 2));
 		bullet.addComponent(new Hitbox(0, -5, 1, 5));
 		bullet.addComponent(new BulletScript());
 		getEntity().getScene().addEntity(bullet);

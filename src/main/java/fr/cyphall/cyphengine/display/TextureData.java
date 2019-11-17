@@ -1,5 +1,6 @@
 package fr.cyphall.cyphengine.display;
 
+import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 
 import java.nio.ByteBuffer;
@@ -13,8 +14,7 @@ public class TextureData
 {
 	private int id;
 	
-	private int width;
-	private int height;
+	private Vector2i size = new Vector2i();
 	
 	public TextureData(String name)
 	{
@@ -34,15 +34,15 @@ public class TextureData
 		}
 		
 		id = glGenTextures();
-		width = w.get();
-		height = h.get();
+		size.x = w.get();
+		size.y = h.get();
 		
 		glBindTexture(GL_TEXTURE_2D, id);
 		
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.x, size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		stbi_image_free(data);
 	}
 	
@@ -56,13 +56,8 @@ public class TextureData
 		glDeleteTextures(id);
 	}
 	
-	public int getWidth()
+	public Vector2i getSize()
 	{
-		return width;
-	}
-	
-	public int getHeight()
-	{
-		return height;
+		return size;
 	}
 }

@@ -46,9 +46,11 @@ public class Window
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
+		glEnable(GL_DEPTH_TEST);
+		
 		this.setClearColor(0, 0, 0);
 		
-		glOrtho(0.f, w, h, 0.f, 0.f, 1.f);
+		glOrtho(0.0f, w, h, 0.0f, 0.5f, 1000.0f);
 //		glLineWidth(2);
 	}
 	
@@ -96,7 +98,7 @@ public class Window
 	
 	public void clear()
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 	
 	public void swap()
@@ -150,16 +152,16 @@ public class Window
 			sprite.getTexture().bind();
 			glBegin(GL_QUADS);
 				glTexCoord2i(0, 0);
-				glVertex2i((sprite.getEntity().getAbsolutePos().x - sprite.getSize().x / 2) * pixelScale, (sprite.getEntity().getAbsolutePos().y - sprite.getSize().y / 2) * pixelScale);
+				glVertex3i((sprite.getEntity().getAbsolutePos().x - sprite.getSize().x / 2) * pixelScale, (sprite.getEntity().getAbsolutePos().y - sprite.getSize().y / 2) * pixelScale, -sprite.getDepth());
 				
 				glTexCoord2i(1, 0);
-				glVertex2i((sprite.getEntity().getAbsolutePos().x + sprite.getSize().x / 2 + (sprite.getSize().x % 2 == 0 ? 0 : 1)) * pixelScale, (sprite.getEntity().getAbsolutePos().y - sprite.getSize().y / 2) * pixelScale);
+				glVertex3i((sprite.getEntity().getAbsolutePos().x + sprite.getSize().x / 2 + (sprite.getSize().x % 2 == 0 ? 0 : 1)) * pixelScale, (sprite.getEntity().getAbsolutePos().y - sprite.getSize().y / 2) * pixelScale, -sprite.getDepth());
 				
 				glTexCoord2i(1, 1);
-				glVertex2i((sprite.getEntity().getAbsolutePos().x + sprite.getSize().x / 2 + (sprite.getSize().x % 2 == 0 ? 0 : 1)) * pixelScale, (sprite.getEntity().getAbsolutePos().y + sprite.getSize().y / 2 + (sprite.getSize().y % 2 == 0 ? 0 : 1)) * pixelScale);
+				glVertex3i((sprite.getEntity().getAbsolutePos().x + sprite.getSize().x / 2 + (sprite.getSize().x % 2 == 0 ? 0 : 1)) * pixelScale, (sprite.getEntity().getAbsolutePos().y + sprite.getSize().y / 2 + (sprite.getSize().y % 2 == 0 ? 0 : 1)) * pixelScale, -sprite.getDepth());
 				
 				glTexCoord2i(0, 1);
-				glVertex2i((sprite.getEntity().getAbsolutePos().x - sprite.getSize().x / 2) * pixelScale, (sprite.getEntity().getAbsolutePos().y + sprite.getSize().y / 2 + (sprite.getSize().y % 2 == 0 ? 0 : 1)) * pixelScale);
+				glVertex3i((sprite.getEntity().getAbsolutePos().x - sprite.getSize().x / 2) * pixelScale, (sprite.getEntity().getAbsolutePos().y + sprite.getSize().y / 2 + (sprite.getSize().y % 2 == 0 ? 0 : 1)) * pixelScale, -sprite.getDepth());
 			glEnd();
 		}
 		glDisable(GL_TEXTURE_2D);

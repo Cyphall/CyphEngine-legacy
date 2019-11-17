@@ -42,7 +42,7 @@ public class Main extends Game
 		
 		Entity enemy1 = new Entity("enemy");
 		enemy1.setRelativePos(new Vector2i(30, 50));
-		enemy1.addComponent(new SpriteRenderer("enemy"));
+		enemy1.addComponent(new SpriteRenderer("enemy", 3));
 		enemy1.addComponent(new Hitbox(-6, -6, 7, 6));
 		
 		ToolBox.currentScene().addEntity(ship);

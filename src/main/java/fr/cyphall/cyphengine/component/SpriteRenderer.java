@@ -10,14 +10,22 @@ public class SpriteRenderer extends Component
 {
 	private TextureData data;
 	
-	private Vector2i size = new Vector2i();
+	private Vector2i size;
+	
+	private int depth = 1;
 	
 	public SpriteRenderer(String textureName)
 	{
 		this.data = ToolBox.tdm().get(textureName);
 		
-		size.x = data.getWidth();
-		size.y = data.getHeight();
+		size = data.getSize();
+	}
+	
+	public SpriteRenderer(String textureName, int depth)
+	{
+		this(textureName);
+		
+		this.depth = Math.max(Math.min(depth, 999), 1);
 	}
 	
 	public TextureData getTexture()
@@ -28,5 +36,15 @@ public class SpriteRenderer extends Component
 	public Vector2i getSize()
 	{
 		return size;
+	}
+	
+	public int getDepth()
+	{
+		return depth;
+	}
+	
+	public void setDepth(int depth)
+	{
+		this.depth = depth;
 	}
 }
