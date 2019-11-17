@@ -5,6 +5,7 @@ import fr.cyphall.cyphengine.entity.Entity;
 public abstract class Component
 {
 	private Entity entity;
+	private boolean enabled = true;
 	
 	public void setEntity(Entity entity)
 	{
@@ -14,5 +15,20 @@ public abstract class Component
 	public Entity getEntity()
 	{
 		return entity;
+	}
+	
+	public void enable()
+	{
+		enabled = true;
+	}
+	
+	public void disable()
+	{
+		enabled = false;
+	}
+	
+	public boolean isEnabled()
+	{
+		return enabled;
 	}
 }

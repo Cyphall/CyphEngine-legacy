@@ -13,11 +13,11 @@ public abstract class Game
 	{
 		glfwInit();
 		
+		ToolBox.setSettingManager(new SettingManager("./resources/settings.ini"));
+		
 		ToolBox.setWindow(new Window(600, 800, "CyphallEngine2D"));
 		
 		ToolBox.setTextureDataManager(new TextureDataManager());
-		
-		ToolBox.setSettingManager(new SettingManager("./resources/settings.ini"));
 		
 		ToolBox.setInputManager(new InputManager());
 	}

@@ -1,22 +1,10 @@
 package fr.cyphall.cyphengine.component;
 
-import java.util.ArrayList;
+import fr.cyphall.cyphengine.entity.Entity;
 
 public abstract class Script extends Component
 {
-	private static ArrayList<Script> instances = new ArrayList<>();
-	
-	public Script()
-	{
-		instances.add(this);
-		init();
-	}
-	
-	public static ArrayList<Script> getInstances()
-	{
-		return instances;
-	}
-	
 	public void init(){}
 	public void update(){}
+	public void onCollision(Hitbox yours, Hitbox other){}
 }

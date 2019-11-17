@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class SpriteRenderer extends Component
 {
-	private static ArrayList<SpriteRenderer> instances = new ArrayList<>();
-	
 	private TextureData data;
 	
 	private Vector2i size = new Vector2i();
@@ -18,15 +16,8 @@ public class SpriteRenderer extends Component
 	{
 		this.data = ToolBox.tdm().get(textureName);
 		
-		size.x = data.getWidth() * ToolBox.settings().getInt("display", "pixelScale");
-		size.y = data.getHeight() * ToolBox.settings().getInt("display", "pixelScale");
-		
-		instances.add(this);
-	}
-	
-	public static ArrayList<SpriteRenderer> getInstances()
-	{
-		return instances;
+		size.x = data.getWidth();
+		size.y = data.getHeight();
 	}
 	
 	public TextureData getTexture()

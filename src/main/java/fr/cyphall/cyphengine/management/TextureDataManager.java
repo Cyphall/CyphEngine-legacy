@@ -15,6 +15,8 @@ public class TextureDataManager
 	{
 		data.put("ship", new TextureData("ship"));
 		data.put("ship2", new TextureData("ship2"));
+		data.put("bullet", new TextureData("bullet1"));
+		data.put("enemy", new TextureData("enemy1"));
 		
 		for (File f : Objects.requireNonNull(new File("./resources/font").listFiles()))
 		{

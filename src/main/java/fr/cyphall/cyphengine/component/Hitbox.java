@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Hitbox extends Component
 {
-	private static ArrayList<Hitbox> instances = new ArrayList<>();
-	
 	private final int left;
 	private final int top;
 	private final int right;
@@ -17,13 +15,6 @@ public class Hitbox extends Component
 		this.top = top;
 		this.right = right;
 		this.bottom = bottom;
-		
-		instances.add(this);
-	}
-	
-	public static ArrayList<Hitbox> getInstances()
-	{
-		return instances;
 	}
 	
 	public int getLeft()
@@ -46,13 +37,33 @@ public class Hitbox extends Component
 		return bottom;
 	}
 	
+	public int getAbsoluteLeft()
+	{
+		return getEntity().getAbsolutePos().x + getLeft();
+	}
+	
+	public int getAbsoluteTop()
+	{
+		return getEntity().getAbsolutePos().y + getTop();
+	}
+	
+	public int getAbsoluteRight()
+	{
+		return getEntity().getAbsolutePos().x + getRight();
+	}
+	
+	public int getAbsoluteBottom()
+	{
+		return getEntity().getAbsolutePos().y + getBottom();
+	}
+	
 	public boolean collidesWith(Hitbox other)
 	{
-		if (this.getLeft() > other.getRight()) return false;
-		if (this.getRight() < other.getLeft()) return false;
-		if (this.getTop() > other.getBottom()) return false;
+		if (this.getAbsoluteLeft() >= other.getAbsoluteRight()) return false;
+		if (this.getAbsoluteRight() <= other.getAbsoluteLeft()) return false;
+		if (this.getAbsoluteTop() >= other.getAbsoluteBottom()) return false;
 		//noinspection RedundantIfStatement
-		if (this.getBottom() < other.getTop()) return false;
+		if (this.getAbsoluteBottom() <= other.getAbsoluteTop()) return false;
 		
 		return true;
 	}
