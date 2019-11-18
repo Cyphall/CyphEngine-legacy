@@ -6,9 +6,11 @@ import fr.cyphall.cyphengine.component.Script;
 import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2i;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Scene
+public abstract class Scene
 {
 	private ArrayList<Entity> entities = new ArrayList<>();
 	private HashMap<Class<? extends Component>, ArrayList<Component>> components = new HashMap<>();
@@ -23,7 +25,10 @@ public class Scene
 	public Scene(Vector2i size)
 	{
 		this.size = size;
+		init();
 	}
+	
+	protected abstract void init();
 	
 	public ArrayList<Entity> getEntities()
 	{
@@ -33,6 +38,7 @@ public class Scene
 	public void addEntity(Entity entity)
 	{
 		newEntitiesBuffer.add(entity);
+		entity.setScene(this);
 	}
 	
 	public void destroyEntity(Entity entity)
@@ -76,14 +82,18 @@ public class Scene
 		
 		for (Map.Entry<Hitbox, Hitbox> entry : collisions.entrySet())
 		{
-			entry.getKey().getEntity().getComponents(Script.class).forEach(s -> ((Script)s).onCollision(entry.getKey(), entry.getValue()));
-			entry.getValue().getEntity().getComponents(Script.class).forEach(s -> ((Script)s).onCollision(entry.getValue(), entry.getKey()));
+			entry.getKey().getEntity().getComponents(Script.class).forEach(s -> {
+				if (s.isEnabled()) ((Script)s).onCollision(entry.getKey(), entry.getValue());
+			});
+			entry.getValue().getEntity().getComponents(Script.class).forEach(s -> {
+				if (s.isEnabled()) ((Script)s).onCollision(entry.getValue(), entry.getKey());
+			});
 		}
 		collisions.clear();
 		
 		for (Component script : getComponentsByClass(Script.class))
 		{
-			((Script)script).update();
+			if (script.isEnabled()) ((Script)script).update();
 		}
 		
 		ToolBox.window().render();
@@ -120,7 +130,6 @@ public class Scene
 		for (Entity entity : newEntitiesBuffer)
 		{
 			entities.add(entity);
-			entity.setScene(this);
 			entity.getComponents().forEach(this::addComponent);
 			
 			for (Component component : entity.getComponents())

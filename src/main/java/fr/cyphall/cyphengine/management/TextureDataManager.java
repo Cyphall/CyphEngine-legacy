@@ -13,10 +13,14 @@ public class TextureDataManager
 	
 	public TextureDataManager()
 	{
-		data.put("ship", new TextureData("ship"));
-		data.put("ship2", new TextureData("ship2"));
-		data.put("bullet", new TextureData("bullet1"));
-		data.put("enemy", new TextureData("enemy1"));
+		data.put("bullet1", new TextureData("bullet1"));
+		data.put("bullet2", new TextureData("bullet2"));
+		data.put("cockpit", new TextureData("cockpit"));
+		data.put("canon", new TextureData("canon"));
+		data.put("arriere", new TextureData("arriere"));
+		data.put("moteur1", new TextureData("moteur1"));
+		data.put("moteur2", new TextureData("moteur2"));
+		data.put("enemy1", new TextureData("enemy1"));
 		
 		for (File f : Objects.requireNonNull(new File("./resources/font").listFiles()))
 		{

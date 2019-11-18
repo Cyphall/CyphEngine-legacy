@@ -1,7 +1,5 @@
 package fr.cyphall.cyphengine.component;
 
-import java.util.ArrayList;
-
 public class Hitbox extends Component
 {
 	private final int left;

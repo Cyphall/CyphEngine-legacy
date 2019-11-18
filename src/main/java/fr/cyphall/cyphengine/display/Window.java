@@ -7,7 +7,6 @@ import fr.cyphall.cyphengine.core.ToolBox;
 import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
@@ -51,7 +50,6 @@ public class Window
 		this.setClearColor(0, 0, 0);
 		
 		glOrtho(0.0f, w, h, 0.0f, 0.5f, 1000.0f);
-//		glLineWidth(2);
 	}
 	
 	public void setSize(int w, int h)
@@ -149,6 +147,8 @@ public class Window
 		for (Component component : ToolBox.currentScene().getComponentsByClass(SpriteRenderer.class))
 		{
 			SpriteRenderer sprite = (SpriteRenderer) component;
+			if (!sprite.isEnabled()) continue;
+			
 			sprite.getTexture().bind();
 			glBegin(GL_QUADS);
 				glTexCoord2i(0, 0);

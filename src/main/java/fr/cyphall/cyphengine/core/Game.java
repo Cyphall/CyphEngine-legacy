@@ -5,7 +5,8 @@ import fr.cyphall.cyphengine.management.InputManager;
 import fr.cyphall.cyphengine.management.SettingManager;
 import fr.cyphall.cyphengine.management.TextureDataManager;
 
-import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.glfwInit;
+import static org.lwjgl.glfw.GLFW.glfwTerminate;
 
 public abstract class Game
 {

@@ -2,6 +2,7 @@ package fr.cyphall.cyphengine.entity;
 
 import fr.cyphall.cyphengine.component.Component;
 import fr.cyphall.cyphengine.core.Scene;
+import org.joml.Vector2f;
 import org.joml.Vector2i;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Entity
 	private ArrayList<Entity> childs = new ArrayList<>();
 	private Entity parent;
 	private Scene scene;
+	private boolean exists = true;
 	
 	public Entity(String type, String id)
 	{
@@ -38,6 +40,11 @@ public class Entity
 	public void setRelativePos(Vector2i pos)
 	{
 		this.pos = pos;
+	}
+	
+	public void setRelativePos(Vector2f pos)
+	{
+		this.pos = new Vector2i((int)pos.x, (int)pos.y);
 	}
 	
 	public Vector2i getRelativePos()
@@ -72,7 +79,7 @@ public class Entity
 		childs.remove(child);
 	}
 	
-	public void setParent(Entity parent)
+	private void setParent(Entity parent)
 	{
 		this.parent = parent;
 	}
@@ -95,6 +102,9 @@ public class Entity
 	{
 		components.add(component);
 		component.setEntity(this);
+		
+		if (scene != null)
+			scene.addComponent(component);
 	}
 	
 	public void setScene(Scene scene)
@@ -129,14 +139,14 @@ public class Entity
 	{
 		scene.destroyEntity(this);
 		
-		scene = null;
+		exists = false;
 		
 		childs.forEach(Entity::unsafeDestroy);
 	}
 	
 	public boolean exists()
 	{
-		return scene != null;
+		return exists;
 	}
 	
 	public Component getComponent(Class<? extends Component> clazz)

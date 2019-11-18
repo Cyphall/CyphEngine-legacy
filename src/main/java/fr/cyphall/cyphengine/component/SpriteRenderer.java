@@ -4,8 +4,6 @@ import fr.cyphall.cyphengine.core.ToolBox;
 import fr.cyphall.cyphengine.display.TextureData;
 import org.joml.Vector2i;
 
-import java.util.ArrayList;
-
 public class SpriteRenderer extends Component
 {
 	private TextureData data;
