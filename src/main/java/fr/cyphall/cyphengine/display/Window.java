@@ -5,6 +5,7 @@ import fr.cyphall.cyphengine.component.Hitbox;
 import fr.cyphall.cyphengine.component.SpriteRenderer;
 import fr.cyphall.cyphengine.core.ToolBox;
 import fr.cyphall.cyphengine.entity.Entity;
+import org.joml.Matrix4f;
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -20,6 +21,7 @@ public class Window
 {
 	private final long window;
 	private int pixelScale = ToolBox.settings().getInt("display", "pixelScale");
+	private Matrix4f projection;
 	
 	private int target_fps = 60;
 	private float fps = 0;
@@ -50,6 +52,7 @@ public class Window
 		this.setClearColor(0, 0, 0);
 		
 		glOrtho(0.0f, w, h, 0.0f, 0.5f, 1000.0f);
+		projection = new Matrix4f().ortho(0.0f, w, h, 0.0f, 0.05f, 1000.0f);
 	}
 	
 	public void setSize(int w, int h)
