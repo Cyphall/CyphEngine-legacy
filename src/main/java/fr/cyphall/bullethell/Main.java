@@ -2,19 +2,33 @@ package fr.cyphall.bullethell;
 
 import fr.cyphall.cyphengine.core.Game;
 import fr.cyphall.cyphengine.core.ToolBox;
+import fr.cyphall.cyphengine.display.Camera;
+import fr.cyphall.cyphengine.display.Window;
+import org.joml.Vector2f;
+import org.joml.Vector2i;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Main extends Game
 {
 	@Override
+	public Window initWindow()
+	{
+		return new Window(600, 800, "Bullet Hell");
+	}
+	
+	@Override
 	public void init()
 	{
-		ToolBox.window().setSize(600, 800);
-		ToolBox.window().setTitle("Bullet Hell");
-		ToolBox.window().setVisible(true);
-		
-		ToolBox.setCurrentScene(new MainScene(ToolBox.window().getLogicalSize()));
+		ToolBox.setCurrentScene(
+				new MainScene(
+						new Vector2i(ToolBox.window().getSize().x/2, ToolBox.window().getSize().y/2),
+						new Camera(
+								new Vector2f(ToolBox.window().getSize()).mul(0.5f),
+								new Vector2f(ToolBox.window().getSize()).mul(0.25f)
+						)
+				)
+		);
 	}
 	
 	@Override

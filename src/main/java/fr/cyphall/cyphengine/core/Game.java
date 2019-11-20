@@ -16,12 +16,14 @@ public abstract class Game
 		
 		ToolBox.setSettingManager(new SettingManager("./resources/settings.ini"));
 		
-		ToolBox.setWindow(new Window(600, 800, "CyphallEngine2D"));
+		ToolBox.setWindow(initWindow());
 		
 		ToolBox.setTextureDataManager(new TextureDataManager());
 		
 		ToolBox.setInputManager(new InputManager());
 	}
+	
+	public abstract Window initWindow();
 	
 	public void init(){}
 	

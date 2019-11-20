@@ -6,14 +6,12 @@ import fr.cyphall.cyphengine.component.SpriteRenderer;
 import fr.cyphall.cyphengine.core.ToolBox;
 import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 
 import java.util.ArrayList;
 
 public class PlayerScript extends Script
 {
 	private int fireCD = 0;
-	private Vector2f pos;
 	
 	private Entity gun;
 	private ArrayList<Entity> moteurs = new ArrayList<>();
@@ -21,48 +19,46 @@ public class PlayerScript extends Script
 	@Override
 	public void init()
 	{
-		getEntity().setRelativePos(new Vector2i(150, 350));
+		getEntity().setRelativePos(new Vector2f(150, 350));
 		getEntity().addComponent(new SpriteRenderer("cockpit"));
 		getEntity().addComponent(new Hitbox(-8, -8, 8, 8));
 		
-		pos = new Vector2f(getEntity().getAbsolutePos());
-		
 		gun = new Entity("ally");
 		getEntity().addChild(gun);
-		gun.setRelativePos(new Vector2i(0, -9));
+		gun.setRelativePos(new Vector2f(0, -9));
 		gun.addComponent(new SpriteRenderer("canon"));
 		gun.addComponent(new Hitbox(-4, -8, 4, 1));
 		
 		Entity arriere = new Entity("ally");
 		getEntity().addChild(arriere);
-		arriere.setRelativePos(new Vector2i(0, 12));
+		arriere.setRelativePos(new Vector2f(0, 12));
 		arriere.addComponent(new SpriteRenderer("arriere"));
 		arriere.addComponent(new Hitbox(-8, -4, 8, 4));
 		
 		Entity moteur1 = new Entity("ally");
 		arriere.addChild(moteur1);
-		moteur1.setRelativePos(new Vector2i(-12, 0));
+		moteur1.setRelativePos(new Vector2f(-12, 0));
 		moteur1.addComponent(new SpriteRenderer("moteur1"));
 		moteur1.addComponent(new Hitbox(-4, -4, 4, 4));
 		moteurs.add(moteur1);
 		
 		Entity moteur2 = new Entity("ally");
 		arriere.addChild(moteur2);
-		moteur2.setRelativePos(new Vector2i(12, 0));
+		moteur2.setRelativePos(new Vector2f(12, 0));
 		moteur2.addComponent(new SpriteRenderer("moteur1"));
 		moteur2.addComponent(new Hitbox(-4, -4, 4, 4));
 		moteurs.add(moteur2);
 		
 		Entity moteur3 = new Entity("ally");
 		arriere.addChild(moteur3);
-		moteur3.setRelativePos(new Vector2i(-4, 6));
+		moteur3.setRelativePos(new Vector2f(-4, 6));
 		moteur3.addComponent(new SpriteRenderer("moteur2"));
 		moteur3.addComponent(new Hitbox(-3, -2, 3, 2));
 		moteurs.add(moteur3);
 		
 		Entity moteur4 = new Entity("ally");
 		arriere.addChild(moteur4);
-		moteur4.setRelativePos(new Vector2i(4, 6));
+		moteur4.setRelativePos(new Vector2f(4, 6));
 		moteur4.addComponent(new SpriteRenderer("moteur2"));
 		moteur4.addComponent(new Hitbox(-3, -2, 3, 2));
 		moteurs.add(moteur4);
@@ -82,14 +78,14 @@ public class PlayerScript extends Script
 		
 		moteurs.removeIf(m -> !m.exists());
 		
+		Vector2f pos = getEntity().getAbsolutePos();
+		
 		float speed = 2.5f;
 		float realSpeed = speed * moteurs.size() / 4;
 		if (ToolBox.inputs().isActionPerformed("up") && pos.y > 20) pos.y -= realSpeed;
 		if (ToolBox.inputs().isActionPerformed("down") && pos.y < getEntity().getScene().getSize().y - 30) pos.y += realSpeed;
 		if (ToolBox.inputs().isActionPerformed("left") && pos.x > 20) pos.x -= realSpeed;
 		if (ToolBox.inputs().isActionPerformed("right") && pos.x < getEntity().getScene().getSize().x - 20) pos.x += realSpeed;
-		
-		getEntity().setRelativePos(pos);
 		
 		if (ToolBox.inputs().isActionPerformed("fire") && fireCD == 0 && gun.exists())
 		{
@@ -101,7 +97,7 @@ public class PlayerScript extends Script
 	private void fire(Entity entity)
 	{
 		Entity bullet = new Entity("allyBullet");
-		bullet.setRelativePos(new Vector2i(entity.getAbsolutePos()).add(new Vector2i(0, -15)));
+		bullet.setRelativePos(new Vector2f(entity.getAbsolutePos()).add(new Vector2f(0, -15)));
 		bullet.addComponent(new SpriteRenderer("bullet1", 2));
 		bullet.addComponent(new Hitbox(-1, -7, 1, 7));
 		

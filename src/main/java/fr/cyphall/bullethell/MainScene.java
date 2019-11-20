@@ -1,16 +1,16 @@
 package fr.cyphall.bullethell;
 
-import fr.cyphall.cyphengine.component.Hitbox;
 import fr.cyphall.cyphengine.component.SpriteRenderer;
 import fr.cyphall.cyphengine.core.Scene;
+import fr.cyphall.cyphengine.display.Camera;
 import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2i;
 
 public class MainScene extends Scene
 {
-	public MainScene(Vector2i size)
+	public MainScene(Vector2i size, Camera camera)
 	{
-		super(size);
+		super(size, camera);
 	}
 	
 	@Override

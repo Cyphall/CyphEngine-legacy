@@ -46,9 +46,11 @@ public class TextureData
 		stbi_image_free(data);
 	}
 	
-	public void bind()
+	public boolean bind()
 	{
+		if (id == 0) return false;
 		glBindTexture(GL_TEXTURE_2D, id);
+		return true;
 	}
 	
 	public void free()

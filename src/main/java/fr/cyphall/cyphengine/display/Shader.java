@@ -95,4 +95,9 @@ public class Shader implements AutoCloseable
 	{
 		GL46.glUseProgram(0);
 	}
+	
+	public int getID()
+	{
+		return programID;
+	}
 }

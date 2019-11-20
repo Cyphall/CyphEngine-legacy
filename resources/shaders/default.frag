@@ -7,5 +7,10 @@ out vec4 out_Color;
 
 void main()
 {
-	out_Color = texture(tex, vec2(frag_UV));
+	vec4 color = texture(tex, frag_UV);
+
+	if (color.a == 0)
+		discard;
+
+	out_Color = color;
 }

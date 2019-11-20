@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Entity
 {
-	private Vector2i pos = new Vector2i(0);
+	private Vector2f pos = new Vector2f(0);
 	private String type;
 	private String id;
 	
@@ -37,28 +37,23 @@ public class Entity
 		this("default");
 	}
 	
-	public void setRelativePos(Vector2i pos)
+	public void setRelativePos(Vector2f pos)
 	{
 		this.pos = pos;
 	}
 	
-	public void setRelativePos(Vector2f pos)
-	{
-		this.pos = new Vector2i((int)pos.x, (int)pos.y);
-	}
-	
-	public Vector2i getRelativePos()
+	public Vector2f getRelativePos()
 	{
 		return this.pos;
 	}
 	
-	public Vector2i getAbsolutePos()
+	public Vector2f getAbsolutePos()
 	{
 		if (parent == null) return pos;
-		return new Vector2i(pos).add(parent.getAbsolutePos());
+		return new Vector2f(pos).add(parent.getAbsolutePos());
 	}
 	
-	public void move(Vector2i offset)
+	public void move(Vector2f offset)
 	{
 		pos.add(offset);
 	}

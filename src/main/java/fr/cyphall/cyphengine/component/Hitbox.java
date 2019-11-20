@@ -2,12 +2,12 @@ package fr.cyphall.cyphengine.component;
 
 public class Hitbox extends Component
 {
-	private final int left;
-	private final int top;
-	private final int right;
-	private final int bottom;
+	private final float left;
+	private final float top;
+	private final float right;
+	private final float bottom;
 	
-	public Hitbox(int left, int top, int right, int bottom)
+	public Hitbox(float left, float top, float right, float bottom)
 	{
 		this.left = left;
 		this.top = top;
@@ -15,42 +15,42 @@ public class Hitbox extends Component
 		this.bottom = bottom;
 	}
 	
-	public int getLeft()
+	public float getLeft()
 	{
 		return left;
 	}
 	
-	public int getTop()
+	public float getTop()
 	{
 		return top;
 	}
 	
-	public int getRight()
+	public float getRight()
 	{
 		return right;
 	}
 	
-	public int getBottom()
+	public float getBottom()
 	{
 		return bottom;
 	}
 	
-	public int getAbsoluteLeft()
+	public float getAbsoluteLeft()
 	{
 		return getEntity().getAbsolutePos().x + getLeft();
 	}
 	
-	public int getAbsoluteTop()
+	public float getAbsoluteTop()
 	{
 		return getEntity().getAbsolutePos().y + getTop();
 	}
 	
-	public int getAbsoluteRight()
+	public float getAbsoluteRight()
 	{
 		return getEntity().getAbsolutePos().x + getRight();
 	}
 	
-	public int getAbsoluteBottom()
+	public float getAbsoluteBottom()
 	{
 		return getEntity().getAbsolutePos().y + getBottom();
 	}
