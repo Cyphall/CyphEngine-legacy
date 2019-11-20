@@ -22,11 +22,7 @@ public class Main extends Game
 	{
 		ToolBox.setCurrentScene(
 				new MainScene(
-						new Vector2i(ToolBox.window().getSize().x/2, ToolBox.window().getSize().y/2),
-						new Camera(
-								new Vector2f(ToolBox.window().getSize()).mul(0.5f),
-								new Vector2f(ToolBox.window().getSize()).mul(0.25f)
-						)
+						new Vector2i(ToolBox.window().getSize().x/2, ToolBox.window().getSize().y/2)
 				)
 		);
 	}

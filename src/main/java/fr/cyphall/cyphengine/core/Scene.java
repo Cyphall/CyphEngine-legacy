@@ -29,6 +29,14 @@ public abstract class Scene
 	
 	private Vector2i size;
 	
+	public Scene(Vector2i size)
+	{
+		this(size, new Camera(
+				new Vector2f(size),
+				new Vector2f(size).mul(0.5f)
+		));
+	}
+	
 	public Scene(Vector2i size, Camera camera)
 	{
 		this.size = size;

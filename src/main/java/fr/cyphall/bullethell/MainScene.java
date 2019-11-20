@@ -8,9 +8,9 @@ import org.joml.Vector2i;
 
 public class MainScene extends Scene
 {
-	public MainScene(Vector2i size, Camera camera)
+	public MainScene(Vector2i size)
 	{
-		super(size, camera);
+		super(size);
 	}
 	
 	@Override
