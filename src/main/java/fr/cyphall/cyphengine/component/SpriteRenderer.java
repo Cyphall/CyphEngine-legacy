@@ -73,9 +73,9 @@ public class SpriteRenderer extends Component
 		return size;
 	}
 	
-	public void setDepth(int depth)
+	public int getDepth()
 	{
-		this.depth = depth;
+		return depth;
 	}
 	
 	public void render(Matrix4f perspective)

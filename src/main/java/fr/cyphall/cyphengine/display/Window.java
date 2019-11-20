@@ -56,7 +56,7 @@ public class Window
 	
 	public void setClearColor(float r, float g, float b)
 	{
-		glClearColor(r, g, b, 1);
+		glClearColor(r, g, b, 0);
 	}
 	
 	public void clear()

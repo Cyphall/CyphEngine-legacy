@@ -16,10 +16,8 @@ public class EnemyScript extends Script
 	public void init()
 	{
 		getEntity().setRelativePos(new Vector2f(150, 50));
-		getEntity().addComponent(new SpriteRenderer("enemy1"));
+		getEntity().addComponent(new SpriteRenderer("enemy1", 20));
 		getEntity().addComponent(new Hitbox(-12, -10, 12, 10));
-		
-		((SpriteRenderer)getEntity().getComponent(SpriteRenderer.class)).setDepth(3);
 	}
 	
 	@Override
@@ -43,7 +41,7 @@ public class EnemyScript extends Script
 	{
 		Entity bullet = new Entity("enemyBullet");
 		bullet.setRelativePos(new Vector2f(entity.getAbsolutePos()).add(new Vector2f(0, 15)));
-		bullet.addComponent(new SpriteRenderer("bullet2", 2));
+		bullet.addComponent(new SpriteRenderer("bullet2", 10));
 		bullet.addComponent(new Hitbox(-1, -7, 1, 7));
 		
 		BulletScript script = new BulletScript();

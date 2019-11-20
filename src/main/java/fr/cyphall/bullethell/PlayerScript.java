@@ -26,7 +26,7 @@ public class PlayerScript extends Script
 		gun = new Entity("ally");
 		getEntity().addChild(gun);
 		gun.setRelativePos(new Vector2f(0, -9));
-		gun.addComponent(new SpriteRenderer("canon"));
+		gun.addComponent(new SpriteRenderer("canon", 2));
 		gun.addComponent(new Hitbox(-4, -8, 4, 1));
 		
 		Entity arriere = new Entity("ally");
@@ -98,7 +98,7 @@ public class PlayerScript extends Script
 	{
 		Entity bullet = new Entity("allyBullet");
 		bullet.setRelativePos(new Vector2f(entity.getAbsolutePos()).add(new Vector2f(0, -15)));
-		bullet.addComponent(new SpriteRenderer("bullet1", 2));
+		bullet.addComponent(new SpriteRenderer("bullet1", 10));
 		bullet.addComponent(new Hitbox(-1, -7, 1, 7));
 		
 		BulletScript script = new BulletScript();

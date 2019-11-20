@@ -74,7 +74,20 @@ public abstract class Scene
 		if (!components.containsKey(clazz))
 			components.put(clazz, new ArrayList<>());
 		
-		components.get(clazz).add(component);
+		ArrayList<Component> list = components.get(clazz);
+		if (component instanceof SpriteRenderer)
+		{
+			int i;
+			for (i = 0; i < list.size(); i++)
+			{
+				if (((SpriteRenderer)component).getDepth() >= ((SpriteRenderer)list.get(i)).getDepth()) break;
+			}
+			list.add(i, component);
+		}
+		else
+		{
+			list.add(component);
+		}
 	}
 	
 	public void update()
