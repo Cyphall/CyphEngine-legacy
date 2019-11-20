@@ -22,6 +22,7 @@ public class PlayerScript extends Script
 		getEntity().setRelativePos(new Vector2f(150, 350));
 		getEntity().addComponent(new SpriteRenderer("cockpit"));
 		getEntity().addComponent(new Hitbox(-8, -8, 8, 8));
+		getEntity().setRotation(20);
 		
 		gun = new Entity("ally");
 		getEntity().addChild(gun);

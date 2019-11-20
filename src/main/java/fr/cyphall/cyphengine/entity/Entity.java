@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Entity
 {
 	private Vector2f pos = new Vector2f(0);
+	private float rotation;
 	private String type;
 	private String id;
 	
@@ -52,6 +53,21 @@ public class Entity
 	public void move(Vector2f offset)
 	{
 		pos.add(offset);
+	}
+	
+	public void setRotation(float rotation)
+	{
+		this.rotation = rotation;
+	}
+	
+	public float getRotation()
+	{
+		return rotation;
+	}
+	
+	public void rotate(float rotation)
+	{
+		this.rotation += rotation;
 	}
 	
 	public ArrayList<Entity> getChilds()

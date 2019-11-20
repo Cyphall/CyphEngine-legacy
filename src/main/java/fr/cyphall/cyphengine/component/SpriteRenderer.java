@@ -5,6 +5,7 @@ import fr.cyphall.cyphengine.display.Shader;
 import fr.cyphall.cyphengine.display.TextureData;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 import static org.lwjgl.opengl.GL46.*;
 
@@ -115,6 +116,7 @@ public class SpriteRenderer extends Component
 	private Matrix4f getModelMatrix()
 	{
 		Matrix4f model = new Matrix4f().identity();
+//		model.rotate(getEntity().getRotation() * (float)Math.PI / 180, new Vector3f(0, 0, 1));
 		model.m30(getEntity().getAbsolutePos().x);
 		model.m31(getEntity().getAbsolutePos().y);
 		return model;
