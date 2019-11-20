@@ -5,7 +5,6 @@ import fr.cyphall.cyphengine.display.Shader;
 import fr.cyphall.cyphengine.display.TextureData;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 
 import static org.lwjgl.opengl.GL46.*;
 

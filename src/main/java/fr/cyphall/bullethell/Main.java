@@ -2,12 +2,11 @@ package fr.cyphall.bullethell;
 
 import fr.cyphall.cyphengine.core.Game;
 import fr.cyphall.cyphengine.core.ToolBox;
-import fr.cyphall.cyphengine.display.Camera;
 import fr.cyphall.cyphengine.display.Window;
-import org.joml.Vector2f;
 import org.joml.Vector2i;
 
-import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.glfwPollEvents;
+import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 public class Main extends Game
 {

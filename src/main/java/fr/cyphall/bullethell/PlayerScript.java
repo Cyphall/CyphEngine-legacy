@@ -87,17 +87,23 @@ public class PlayerScript extends Script
 		if (ToolBox.inputs().isActionPerformed("left") && pos.x > 20) pos.x -= realSpeed;
 		if (ToolBox.inputs().isActionPerformed("right") && pos.x < getEntity().getScene().getSize().x - 20) pos.x += realSpeed;
 		
-		if (ToolBox.inputs().isActionPerformed("fire") && fireCD == 0 && gun.exists())
+		getEntity().setRelativePos(pos);
+		
+		if (ToolBox.inputs().isActionPerformed("fire"))
 		{
-			fire(getEntity());
-			fireCD = 10;
+			fire(gun);
 		}
 	}
 	
 	private void fire(Entity entity)
 	{
+		if (!entity.exists()) return;
+		
+		if (fireCD > 0) return;
+		fireCD = 10;
+		
 		Entity bullet = new Entity("allyBullet");
-		bullet.setRelativePos(new Vector2f(entity.getAbsolutePos()).add(new Vector2f(0, -15)));
+		bullet.setRelativePos(entity.getAbsolutePos());
 		bullet.addComponent(new SpriteRenderer("bullet1", 10));
 		bullet.addComponent(new Hitbox(-1, -7, 1, 7));
 		

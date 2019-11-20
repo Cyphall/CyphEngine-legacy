@@ -3,6 +3,7 @@ package fr.cyphall.cyphengine.display;
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWVidMode;
+
 import java.nio.IntBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;

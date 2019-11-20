@@ -3,7 +3,6 @@ package fr.cyphall.cyphengine.entity;
 import fr.cyphall.cyphengine.component.Component;
 import fr.cyphall.cyphengine.core.Scene;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -49,8 +48,8 @@ public class Entity
 	
 	public Vector2f getAbsolutePos()
 	{
-		if (parent == null) return pos;
-		return new Vector2f(pos).add(parent.getAbsolutePos());
+		if (parent == null) return getRelativePos();
+		return parent.getAbsolutePos().add(pos);
 	}
 	
 	public void move(Vector2f offset)

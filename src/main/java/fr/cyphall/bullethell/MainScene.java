@@ -1,8 +1,6 @@
 package fr.cyphall.bullethell;
 
-import fr.cyphall.cyphengine.component.SpriteRenderer;
 import fr.cyphall.cyphengine.core.Scene;
-import fr.cyphall.cyphengine.display.Camera;
 import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2i;
 

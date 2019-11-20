@@ -5,7 +5,6 @@ import fr.cyphall.cyphengine.component.Script;
 import fr.cyphall.cyphengine.component.SpriteRenderer;
 import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 
 public class EnemyScript extends Script
 {
@@ -23,27 +22,28 @@ public class EnemyScript extends Script
 	@Override
 	public void update()
 	{
+		if (fireCD > 0) fireCD--;
+		
 		Vector2f pos = getEntity().getAbsolutePos();
 		
 		pos.x += speed;
 		
+		getEntity().setRelativePos(pos);
+		
 		if (pos.x < 50 || pos.x > 250) speed *= -1;
 		
-		if (fireCD == 0)
-		{
-			fire(getEntity());
-			fireCD = 60;
-		}
-		fireCD--;
+		fire(getEntity());
 	}
 	
 	private void fire(Entity entity)
 	{
-		SpriteRenderer renderer = ((SpriteRenderer)entity.getComponent(SpriteRenderer.class));
-		renderer.setSize(renderer.getSize().add(4, 0));
+		if (!entity.exists()) return;
+		
+		if (fireCD > 0) return;
+		fireCD = 60;
 		
 		Entity bullet = new Entity("enemyBullet");
-		bullet.setRelativePos(new Vector2f(entity.getAbsolutePos()).add(new Vector2f(0, 15)));
+		bullet.setRelativePos(entity.getAbsolutePos().add(0, 15));
 		bullet.addComponent(new SpriteRenderer("bullet2", 10));
 		bullet.addComponent(new Hitbox(-1, -7, 1, 7));
 		
