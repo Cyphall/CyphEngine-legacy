@@ -6,7 +6,7 @@ import org.joml.Vector2f;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-
+//TODO: better entity instantiation
 public class Entity
 {
 	private Vector2f pos = new Vector2f(0);

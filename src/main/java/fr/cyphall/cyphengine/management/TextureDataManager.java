@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
+//TODO: rework this mess
 public class TextureDataManager
 {
 	private final HashMap<String, TextureData> data = new HashMap<>();
