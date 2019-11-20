@@ -40,18 +40,15 @@ public class Entity
 	{
 		this.pos = pos;
 	}
-	
 	public Vector2f getRelativePos()
 	{
 		return new Vector2f(pos);
 	}
-	
 	public Vector2f getAbsolutePos()
 	{
 		if (parent == null) return getRelativePos();
 		return parent.getAbsolutePos().add(pos);
 	}
-	
 	public void move(Vector2f offset)
 	{
 		pos.add(offset);
@@ -61,13 +58,11 @@ public class Entity
 	{
 		return childs;
 	}
-	
 	public void addChild(Entity child)
 	{
 		childs.add(child);
 		child.setParent(this);
 	}
-	
 	public void removeChild(Entity child)
 	{
 		childs.remove(child);
@@ -77,7 +72,6 @@ public class Entity
 	{
 		this.parent = parent;
 	}
-	
 	public Entity getParent()
 	{
 		return parent;
@@ -91,7 +85,6 @@ public class Entity
 	{
 		return (ArrayList<Component>)components.stream().filter(clazz::isInstance).collect(Collectors.toList());
 	}
-	
 	public void addComponent(Component component)
 	{
 		components.add(component);
@@ -105,7 +98,6 @@ public class Entity
 	{
 		this.scene = scene;
 	}
-	
 	public Scene getScene()
 	{
 		return scene;
@@ -128,7 +120,6 @@ public class Entity
 		if (parent != null)
 			parent.getChilds().remove(this);
 	}
-	
 	private void unsafeDestroy()
 	{
 		scene.destroyEntity(this);

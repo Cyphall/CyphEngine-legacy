@@ -15,44 +15,24 @@ public class Hitbox extends Component
 		this.bottom = bottom;
 	}
 	
-	public float getLeft()
-	{
-		return left;
-	}
-	
-	public float getTop()
-	{
-		return top;
-	}
-	
-	public float getRight()
-	{
-		return right;
-	}
-	
-	public float getBottom()
-	{
-		return bottom;
-	}
-	
 	public float getAbsoluteLeft()
 	{
-		return getEntity().getAbsolutePos().x + getLeft();
+		return getEntity().getAbsolutePos().x + left;
 	}
 	
 	public float getAbsoluteTop()
 	{
-		return getEntity().getAbsolutePos().y + getTop();
+		return getEntity().getAbsolutePos().y + top;
 	}
 	
 	public float getAbsoluteRight()
 	{
-		return getEntity().getAbsolutePos().x + getRight();
+		return getEntity().getAbsolutePos().x + right;
 	}
 	
 	public float getAbsoluteBottom()
 	{
-		return getEntity().getAbsolutePos().y + getBottom();
+		return getEntity().getAbsolutePos().y + bottom;
 	}
 	
 	public boolean collidesWith(Hitbox other)
