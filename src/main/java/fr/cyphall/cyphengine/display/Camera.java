@@ -35,6 +35,6 @@ public class Camera
 	
 	public Matrix4f getPerspectiveMatrix()
 	{
-		return perspectiveMatrix;
+		return new Matrix4f(perspectiveMatrix);
 	}
 }

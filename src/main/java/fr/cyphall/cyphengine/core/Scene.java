@@ -181,7 +181,7 @@ public abstract class Scene
 	
 	public Vector2i getSize()
 	{
-		return size;
+		return new Vector2i(size);
 	}
 	
 	private void render()

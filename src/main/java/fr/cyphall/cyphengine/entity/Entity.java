@@ -44,7 +44,7 @@ public class Entity
 	
 	public Vector2f getRelativePos()
 	{
-		return this.pos;
+		return new Vector2f(pos);
 	}
 	
 	public Vector2f getAbsolutePos()

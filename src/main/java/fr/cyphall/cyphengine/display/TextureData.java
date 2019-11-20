@@ -60,6 +60,6 @@ public class TextureData
 	
 	public Vector2i getSize()
 	{
-		return size;
+		return new Vector2i(size);
 	}
 }

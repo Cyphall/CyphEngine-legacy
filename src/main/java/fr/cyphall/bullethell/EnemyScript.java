@@ -39,6 +39,9 @@ public class EnemyScript extends Script
 	
 	private void fire(Entity entity)
 	{
+		SpriteRenderer renderer = ((SpriteRenderer)entity.getComponent(SpriteRenderer.class));
+		renderer.setSize(renderer.getSize().add(4, 0));
+		
 		Entity bullet = new Entity("enemyBullet");
 		bullet.setRelativePos(new Vector2f(entity.getAbsolutePos()).add(new Vector2f(0, 15)));
 		bullet.addComponent(new SpriteRenderer("bullet2", 10));

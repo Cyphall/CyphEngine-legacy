@@ -4,6 +4,7 @@ import fr.cyphall.cyphengine.core.ToolBox;
 import fr.cyphall.cyphengine.display.Shader;
 import fr.cyphall.cyphengine.display.TextureData;
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector2i;
 
 import static org.lwjgl.opengl.GL46.*;
@@ -18,14 +19,14 @@ public class SpriteRenderer extends Component
 	private int verticesBufferID;
 	private int uvsBufferID;
 	
-	private Vector2i size;
+	private Vector2f size;
 	private int depth = 1;
 	
 	public SpriteRenderer(String textureName)
 	{
 		this.data = ToolBox.tdm().get(textureName);
 		
-		size = data.getSize();
+		size = new Vector2f(data.getSize());
 		
 		if (shader == null)
 			shader = new Shader("default");
@@ -52,13 +53,10 @@ public class SpriteRenderer extends Component
 			
 			glBindBuffer(GL_ARRAY_BUFFER, uvsBufferID);
 				glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
+				glBufferData(GL_ARRAY_BUFFER, uvs, GL_STATIC_DRAW);
 				glEnableVertexAttribArray(1);
 		
 		glBindVertexArray(0);
-		
-		glBindBuffer(GL_ARRAY_BUFFER, uvsBufferID);
-			glBufferData(GL_ARRAY_BUFFER, uvs, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 	
 	public SpriteRenderer(String textureName, int depth)
@@ -68,9 +66,14 @@ public class SpriteRenderer extends Component
 		this.depth = Math.max(Math.min(depth, 999), 1);
 	}
 	
-	public Vector2i getSize()
+	public Vector2f getSize()
 	{
-		return size;
+		return new Vector2f(size);
+	}
+	
+	public void setSize(Vector2f size)
+	{
+		this.size = size;
 	}
 	
 	public int getDepth()
@@ -85,12 +88,12 @@ public class SpriteRenderer extends Component
 		Matrix4f matrix = new Matrix4f(perspective).mul(getModelMatrix());
 		
 		float[] vertices = new float[]{
-				-getSize().x / 2.0f, -getSize().y / 2.0f, -depth,
-				getSize().x / 2.0f, getSize().y / 2.0f, -depth,
-				getSize().x / 2.0f, -getSize().y / 2.0f, -depth,
-				-getSize().x / 2.0f, -getSize().y / 2.0f, -depth,
-				-getSize().x / 2.0f, getSize().y / 2.0f, -depth,
-				getSize().x / 2.0f, getSize().y / 2.0f, -depth
+				-getSize().x / 2, -getSize().y / 2, -depth,
+				 getSize().x / 2,  getSize().y / 2, -depth,
+				 getSize().x / 2, -getSize().y / 2, -depth,
+				-getSize().x / 2, -getSize().y / 2, -depth,
+				-getSize().x / 2,  getSize().y / 2, -depth,
+				 getSize().x / 2,  getSize().y / 2, -depth
 		};
 		
 		glBindBuffer(GL_ARRAY_BUFFER, verticesBufferID);
