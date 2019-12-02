@@ -88,12 +88,12 @@ public class SpriteRenderer extends Component
 		Matrix4f matrix = new Matrix4f(perspective).mul(getModelMatrix());
 		
 		float[] vertices = new float[]{
-				-getSize().x / 2, -getSize().y / 2, -depth,
-				 getSize().x / 2,  getSize().y / 2, -depth,
-				 getSize().x / 2, -getSize().y / 2, -depth,
-				-getSize().x / 2, -getSize().y / 2, -depth,
-				-getSize().x / 2,  getSize().y / 2, -depth,
-				 getSize().x / 2,  getSize().y / 2, -depth
+				-size.x / 2, -size.y / 2, -depth,
+				 size.x / 2,  size.y / 2, -depth,
+				 size.x / 2, -size.y / 2, -depth,
+				-size.x / 2, -size.y / 2, -depth,
+				-size.x / 2,  size.y / 2, -depth,
+				 size.x / 2,  size.y / 2, -depth
 		};
 		
 		glBindBuffer(GL_ARRAY_BUFFER, verticesBufferID);
