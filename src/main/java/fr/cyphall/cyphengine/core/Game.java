@@ -14,7 +14,7 @@ public abstract class Game
 	{
 		glfwInit();
 		
-		ToolBox.setSettingManager(new SettingManager("./resources/settings.ini"));
+		ToolBox.setSettingManager(new SettingManager());
 		
 		ToolBox.setWindow(initWindow());
 		

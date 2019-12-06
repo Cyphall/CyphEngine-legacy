@@ -9,15 +9,15 @@ public class SettingManager
 {
 	private Wini ini;
 	
-	public SettingManager(String path)
+	public SettingManager()
 	{
 		try
 		{
-			ini = new Wini(new File(path));
+			ini = new Wini(SettingManager.class.getResourceAsStream("/settings.ini"));
 		}
 		catch(IOException e)
 		{
-			System.err.println("Config file " + path + " not found");
+			System.err.println("Config file not found");
 		}
 	}
 	

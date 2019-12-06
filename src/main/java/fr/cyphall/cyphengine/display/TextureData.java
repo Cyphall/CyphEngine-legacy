@@ -1,14 +1,16 @@
 package fr.cyphall.cyphengine.display;
 
+import org.apache.commons.io.IOUtils;
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.stb.STBImage.stbi_image_free;
-import static org.lwjgl.stb.STBImage.stbi_load;
+import static org.lwjgl.stb.STBImage.*;
 
 public class TextureData
 {
@@ -22,16 +24,38 @@ public class TextureData
 		IntBuffer h = BufferUtils.createIntBuffer(1);
 		IntBuffer channels = BufferUtils.createIntBuffer(1);
 		
-		ByteBuffer data = stbi_load("./resources/"+name+".png", w, h, channels, 0);
-		
-		if (data == null)
+		ByteBuffer data;
+		try
+		{
+			InputStream is = TextureData.class.getResourceAsStream("/" + name + ".png");
+			if (is == null) throw new IOException();
+			byte[] array = IOUtils.toByteArray(is);
+			ByteBuffer bb = BufferUtils.createByteBuffer(array.length);
+			bb.put(array);
+			bb.flip();
+			data = stbi_load_from_memory(bb, w, h, channels, 0);
+		}
+		catch (IOException e)
 		{
 			System.err.println("Texture \""+name+"\" not found.");
-			data = stbi_load("./resources/error.png", w, h, channels, 0);
-			
-			if (data == null)
+			try
+			{
+				InputStream is = TextureData.class.getResourceAsStream("/error.png");
+				if (is == null) throw new IOException();
+				byte[] array = IOUtils.toByteArray(is);
+				ByteBuffer bb = BufferUtils.createByteBuffer(array.length);
+				bb.put(array);
+				bb.flip();
+				data = stbi_load_from_memory(bb, w, h, channels, 0);
+			}
+			catch (IOException ex)
+			{
 				throw new IllegalStateException("Error texture not found");
+			}
 		}
+		
+		if (data == null)
+			throw new IllegalStateException("Texture " + name +  " could not be loaded");
 		
 		id = glGenTextures();
 		size.x = w.get();

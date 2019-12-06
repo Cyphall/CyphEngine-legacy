@@ -1,9 +1,11 @@
 package fr.cyphall.cyphengine.display;
 
+import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL46;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,7 +18,7 @@ public class Shader implements AutoCloseable
 	
 	public Shader(String name)
 	{
-		createShaderProgram("./resources/shaders/" + name + ".vert", "./resources/shaders/" + name + ".frag");
+		createShaderProgram("/shaders/" + name + ".vert", "/shaders/" + name + ".frag");
 	}
 	
 	public void close()
@@ -31,14 +33,11 @@ public class Shader implements AutoCloseable
 		if (shaderID == 0)
 			throw new RuntimeException("Error while creating shader for " + path + ": " + GL46.glGetError());
 		
-		StringBuilder source = new StringBuilder();
+		StringWriter source = new StringWriter();
 		
 		try
 		{
-			BufferedReader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
-			String str;
-			while ((str = reader.readLine()) != null)
-				source.append(str).append("\n");
+			IOUtils.copy(Shader.class.getResourceAsStream(path), source, StandardCharsets.UTF_8);
 		}
 		catch (IOException e)
 		{
@@ -46,7 +45,7 @@ public class Shader implements AutoCloseable
 			System.exit(1);
 		}
 		
-		GL46.glShaderSource(shaderID, source);
+		GL46.glShaderSource(shaderID, source.toString());
 		GL46.glCompileShader(shaderID);
 		
 		if (GL46.glGetShaderi(shaderID, GL46.GL_COMPILE_STATUS) == GL46.GL_FALSE)

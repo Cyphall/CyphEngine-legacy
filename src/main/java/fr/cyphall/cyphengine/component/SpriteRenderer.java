@@ -116,7 +116,6 @@ public class SpriteRenderer extends Component
 	private Matrix4f getModelMatrix()
 	{
 		Matrix4f model = new Matrix4f().identity();
-//		model.rotate(getEntity().getRotation() * (float)Math.PI / 180, new Vector3f(0, 0, 1));
 		model.m30(getEntity().getAbsolutePos().x);
 		model.m31(getEntity().getAbsolutePos().y);
 		return model;
