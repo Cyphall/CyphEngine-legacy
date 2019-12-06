@@ -1,5 +1,3 @@
 .idea/
-resources/stuff/
-resources/raw/
+out/
 target/
-*.iml
