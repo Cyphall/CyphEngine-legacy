@@ -2,7 +2,6 @@ package fr.cyphall.cyphengine.management;
 
 import org.ini4j.Wini;
 
-import java.io.File;
 import java.io.IOException;
 
 public class SettingManager

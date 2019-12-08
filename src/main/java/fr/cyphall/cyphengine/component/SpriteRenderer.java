@@ -1,11 +1,11 @@
 package fr.cyphall.cyphengine.component;
 
+import fr.cyphall.cyphengine.core.Component;
 import fr.cyphall.cyphengine.core.ToolBox;
 import fr.cyphall.cyphengine.display.Shader;
 import fr.cyphall.cyphengine.display.TextureData;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 
 import static org.lwjgl.opengl.GL46.*;
 

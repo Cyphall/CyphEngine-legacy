@@ -5,8 +5,7 @@ import fr.cyphall.cyphengine.management.InputManager;
 import fr.cyphall.cyphengine.management.SettingManager;
 import fr.cyphall.cyphengine.management.TextureDataManager;
 
-import static org.lwjgl.glfw.GLFW.glfwInit;
-import static org.lwjgl.glfw.GLFW.glfwTerminate;
+import static org.lwjgl.glfw.GLFW.*;
 
 public abstract class Game
 {
@@ -26,9 +25,6 @@ public abstract class Game
 	public abstract Window initWindow();
 	
 	public void init(){}
-	
-	public void loop(){}
-	
 	public void quit(){}
 	
 	private void internal_quit()
@@ -37,10 +33,20 @@ public abstract class Game
 		glfwTerminate();
 	}
 	
-	public void run()
+	public final void run()
 	{
 		init();
-		loop();
-		quit();
+		
+		while(!ToolBox.window().shouldClose())
+		{
+			ToolBox.window().clear();
+			glfwPollEvents();
+			
+			ToolBox.currentScene().update();
+			
+			ToolBox.window().swap();
+		}
+		
+		internal_quit();
 	}
 }

@@ -1,12 +1,10 @@
-package fr.cyphall.cyphengine.entity;
+package fr.cyphall.cyphengine.core;
 
-import fr.cyphall.cyphengine.component.Component;
-import fr.cyphall.cyphengine.core.Scene;
 import org.joml.Vector2f;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-//TODO: better entity instantiation
+
 public class Entity
 {
 	private Vector2f pos = new Vector2f(0);
@@ -19,7 +17,6 @@ public class Entity
 	private ArrayList<Entity> childs = new ArrayList<>();
 	private Entity parent;
 	private Scene scene;
-	private boolean exists = true;
 	
 	public Entity(String type, String id)
 	{
@@ -76,15 +73,24 @@ public class Entity
 	}
 	public void addChild(Entity child)
 	{
+		internal_addChild(child);
+		child.internal_setParent(this);
+	}
+	private void internal_addChild(Entity child)
+	{
 		childs.add(child);
-		child.setParent(this);
 	}
 	public void removeChild(Entity child)
 	{
 		childs.remove(child);
 	}
 	
-	private void setParent(Entity parent)
+	public void setParent(Entity parent)
+	{
+		internal_setParent(parent);
+		parent.internal_addChild(this);
+	}
+	private void internal_setParent(Entity parent)
 	{
 		this.parent = parent;
 	}
@@ -110,9 +116,10 @@ public class Entity
 			scene.addComponent(component);
 	}
 	
-	public void setScene(Scene scene)
+	void setScene(Scene scene)
 	{
 		this.scene = scene;
+		components.forEach(scene::addComponent);
 	}
 	public Scene getScene()
 	{
@@ -131,23 +138,23 @@ public class Entity
 	
 	public void destroy()
 	{
-		unsafeDestroy();
+		internal_destroy();
 		
 		if (parent != null)
 			parent.getChilds().remove(this);
 	}
-	private void unsafeDestroy()
+	private void internal_destroy()
 	{
 		scene.destroyEntity(this);
 		
-		exists = false;
+		scene = null;
 		
-		childs.forEach(Entity::unsafeDestroy);
+		childs.forEach(Entity::internal_destroy);
 	}
 	
 	public boolean exists()
 	{
-		return exists;
+		return scene != null;
 	}
 	
 	public Component getComponent(Class<? extends Component> clazz)

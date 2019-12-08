@@ -1,5 +1,7 @@
 package fr.cyphall.cyphengine.component;
 
+import fr.cyphall.cyphengine.core.Component;
+
 public class Hitbox extends Component
 {
 	private final float left;

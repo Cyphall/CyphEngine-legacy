@@ -1,11 +1,9 @@
 package fr.cyphall.cyphengine.core;
 
-import fr.cyphall.cyphengine.component.Component;
 import fr.cyphall.cyphengine.component.Hitbox;
 import fr.cyphall.cyphengine.component.Script;
 import fr.cyphall.cyphengine.component.SpriteRenderer;
 import fr.cyphall.cyphengine.display.Camera;
-import fr.cyphall.cyphengine.entity.Entity;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 
@@ -57,12 +55,12 @@ public abstract class Scene
 		entity.setScene(this);
 	}
 	
-	public void destroyEntity(Entity entity)
+	void destroyEntity(Entity entity)
 	{
 		destroyedEntitiesBuffer.add(entity);
 	}
 	
-	public void addComponent(Component component)
+	void addComponent(Component component)
 	{
 		Class<? extends Component> clazz;
 		
@@ -90,7 +88,7 @@ public abstract class Scene
 		}
 	}
 	
-	public void update()
+	void update()
 	{
 		initPendingScripts();
 		
@@ -156,18 +154,15 @@ public abstract class Scene
 	
 	private void addPendingEntities()
 	{
-		for (Entity entity : newEntitiesBuffer)
+		for (Map.Entry<Entity, Entity> pair : newEntitiesBuffer.entrySet())
 		{
-			entities.add(entity);
-			entity.getComponents().forEach(this::addComponent);
+			Entity entity = pair.getKey();
+			Entity parent = pair.getValue();
 			
-			for (Component component : entity.getComponents())
-			{
-				if (component instanceof Script)
-				{
-					newScriptsBuffer.add((Script)component);
-				}
-			}
+			if (parent != null) entity.setParent(parent);
+			entity.setScene(this);
+			
+			entities.add(entity);
 		}
 		
 		newEntitiesBuffer.clear();

@@ -1,6 +1,4 @@
-package fr.cyphall.cyphengine.component;
-
-import fr.cyphall.cyphengine.entity.Entity;
+package fr.cyphall.cyphengine.core;
 
 public abstract class Component
 {

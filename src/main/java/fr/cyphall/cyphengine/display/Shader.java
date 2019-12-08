@@ -3,12 +3,9 @@ package fr.cyphall.cyphengine.display;
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL46;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class Shader implements AutoCloseable
 {

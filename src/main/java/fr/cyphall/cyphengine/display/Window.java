@@ -96,4 +96,9 @@ public class Window
 		glfwGetWindowSize(window, w ,h);
 		return new Vector2i(w.get(), h.get());
 	}
+	
+	public boolean shouldClose()
+	{
+		return glfwWindowShouldClose(window);
+	}
 }
