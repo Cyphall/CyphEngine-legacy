@@ -7,10 +7,9 @@ import java.util.stream.Collectors;
 
 public class Entity
 {
-	private Vector2f pos = new Vector2f(0);
-	private float rotation;
-	private String type;
-	private String id;
+	private Vector2f pos;
+	private String type = "";
+	private String id = "";
 	
 	private ArrayList<Component> components = new ArrayList<>();
 	
@@ -18,20 +17,14 @@ public class Entity
 	private Entity parent;
 	private Scene scene;
 	
-	public Entity(String type, String id)
+	public Entity(Vector2f pos)
 	{
-		this.type = type;
-		this.id = id;
-	}
-	
-	public Entity(String type)
-	{
-		this(type, "");
+		this.pos = pos;
 	}
 	
 	public Entity()
 	{
-		this("default");
+		this(new Vector2f(0));
 	}
 	
 	public void setRelativePos(Vector2f pos)
@@ -50,21 +43,6 @@ public class Entity
 	public void move(Vector2f offset)
 	{
 		pos.add(offset);
-	}
-	
-	public void setRotation(float rotation)
-	{
-		this.rotation = rotation;
-	}
-	
-	public float getRotation()
-	{
-		return rotation;
-	}
-	
-	public void rotate(float rotation)
-	{
-		this.rotation += rotation;
 	}
 	
 	public ArrayList<Entity> getChilds()
@@ -107,13 +85,15 @@ public class Entity
 	{
 		return (ArrayList<Component>)components.stream().filter(clazz::isInstance).collect(Collectors.toList());
 	}
-	public void addComponent(Component component)
+	public <T extends Component> T addComponent(T component)
 	{
 		components.add(component);
 		component.setEntity(this);
 		
 		if (scene != null)
 			scene.addComponent(component);
+		
+		return component;
 	}
 	
 	void setScene(Scene scene)
@@ -130,10 +110,18 @@ public class Entity
 	{
 		return type;
 	}
+	public void setType(String type)
+	{
+		this.type = type;
+	}
 	
 	public String getID()
 	{
 		return id;
+	}
+	public void setID(String id)
+	{
+		this.id = id;
 	}
 	
 	public void destroy()
@@ -160,5 +148,17 @@ public class Entity
 	public Component getComponent(Class<? extends Component> clazz)
 	{
 		return components.stream().filter(clazz::isInstance).findFirst().orElse(null);
+	}
+	
+	public Entity instantiate(Entity entity, Entity parent)
+	{
+		if (!exists()) throw new IllegalStateException("Cannot instantiate an entity in a null scene");
+		return scene.instantiate(entity, parent);
+	}
+	
+	public Entity instantiate(Entity entity)
+	{
+		if (!exists()) throw new IllegalStateException("Cannot instantiate an entity in a null scene");
+		return scene.instantiate(entity);
 	}
 }

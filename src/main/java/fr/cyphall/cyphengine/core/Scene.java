@@ -21,7 +21,8 @@ public abstract class Scene
 	private HashMap<Class<? extends Component>, ArrayList<Component>> components = new HashMap<>();
 	
 	private ArrayList<Entity> destroyedEntitiesBuffer = new ArrayList<>();
-	private ArrayList<Entity> newEntitiesBuffer = new ArrayList<>();
+	private HashMap<Entity, Entity> newEntitiesBuffer = new HashMap<>();
+	private ArrayList<Component> newComponentsBuffer = new ArrayList<>();
 	private ArrayList<Script> newScriptsBuffer = new ArrayList<>();
 	private HashMap<Hitbox, Hitbox> collisions = new HashMap<>();
 	
@@ -49,12 +50,6 @@ public abstract class Scene
 		return entities;
 	}
 	
-	public void addEntity(Entity entity)
-	{
-		newEntitiesBuffer.add(entity);
-		entity.setScene(this);
-	}
-	
 	void destroyEntity(Entity entity)
 	{
 		destroyedEntitiesBuffer.add(entity);
@@ -62,30 +57,7 @@ public abstract class Scene
 	
 	void addComponent(Component component)
 	{
-		Class<? extends Component> clazz;
-		
-		if (component instanceof Script)
-			clazz = Script.class;
-		else
-			clazz = component.getClass();
-		
-		if (!components.containsKey(clazz))
-			components.put(clazz, new ArrayList<>());
-		
-		ArrayList<Component> list = components.get(clazz);
-		if (component instanceof SpriteRenderer)
-		{
-			int i;
-			for (i = 0; i < list.size(); i++)
-			{
-				if (((SpriteRenderer)component).getDepth() >= ((SpriteRenderer)list.get(i)).getDepth()) break;
-			}
-			list.add(i, component);
-		}
-		else
-		{
-			list.add(component);
-		}
+		newComponentsBuffer.add(component);
 	}
 	
 	void update()
@@ -128,6 +100,7 @@ public abstract class Scene
 		
 		destroyPendingEntities();
 		addPendingEntities();
+		addPendingComponents();
 	}
 	
 	private void destroyPendingEntities()
@@ -168,6 +141,44 @@ public abstract class Scene
 		newEntitiesBuffer.clear();
 	}
 	
+	private void addPendingComponents()
+	{
+		for (Component component : newComponentsBuffer)
+		{
+			Class<? extends Component> clazz;
+			
+			if (component instanceof Script)
+				clazz = Script.class;
+			else
+				clazz = component.getClass();
+			
+			if (!components.containsKey(clazz))
+				components.put(clazz, new ArrayList<>());
+			
+			ArrayList<Component> list = components.get(clazz);
+			if (component instanceof Script)
+			{
+				newScriptsBuffer.add((Script)component);
+				list.add(component);
+			}
+			else if (component instanceof SpriteRenderer)
+			{
+				int i;
+				for (i = 0; i < list.size(); i++)
+				{
+					if (((SpriteRenderer)component).getDepth() >= ((SpriteRenderer)list.get(i)).getDepth()) break;
+				}
+				list.add(i, component);
+			}
+			else
+			{
+				list.add(component);
+			}
+		}
+		
+		newComponentsBuffer.clear();
+	}
+	
 	private void initPendingScripts()
 	{
 		newScriptsBuffer.forEach(Script::init);
@@ -177,6 +188,17 @@ public abstract class Scene
 	public Vector2i getSize()
 	{
 		return new Vector2i(size);
+	}
+	
+	public Entity instantiate(Entity entity, Entity parent)
+	{
+		newEntitiesBuffer.put(entity, parent);
+		return entity;
+	}
+	
+	public Entity instantiate(Entity entity)
+	{
+		return instantiate(entity, null);
 	}
 	
 	private void render()

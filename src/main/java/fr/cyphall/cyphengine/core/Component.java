@@ -29,4 +29,14 @@ public abstract class Component
 	{
 		return enabled;
 	}
+	
+	public Entity instantiate(Entity entity, Entity parent)
+	{
+		return this.entity.instantiate(entity, parent);
+	}
+	
+	public Entity instantiate(Entity entity)
+	{
+		return this.entity.instantiate(entity);
+	}
 }
