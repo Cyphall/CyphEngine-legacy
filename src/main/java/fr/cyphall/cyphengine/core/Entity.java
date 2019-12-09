@@ -99,6 +99,9 @@ public class Entity
 	void setScene(Scene scene)
 	{
 		this.scene = scene;
+		
+		if (scene == null) return;
+		
 		components.forEach(scene::addComponent);
 	}
 	public Scene getScene()
@@ -134,8 +137,6 @@ public class Entity
 	private void internal_destroy()
 	{
 		scene.destroyEntity(this);
-		
-		scene = null;
 		
 		childs.forEach(Entity::internal_destroy);
 	}

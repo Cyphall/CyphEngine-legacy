@@ -107,6 +107,7 @@ public abstract class Scene
 	{
 		destroyedEntitiesBuffer.forEach(e -> {
 			entities.remove(e);
+			e.setScene(null);
 			e.getComponents().forEach(c -> {
 				if (c instanceof Script)
 				{
