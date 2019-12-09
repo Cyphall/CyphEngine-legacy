@@ -21,7 +21,7 @@ public abstract class Scene
 	private HashMap<Class<? extends Component>, ArrayList<Component>> components = new HashMap<>();
 	
 	private ArrayList<Entity> destroyedEntitiesBuffer = new ArrayList<>();
-	private HashMap<Entity, Entity> newEntitiesBuffer = new HashMap<>();
+	private ArrayList<NewEntityData> newEntitiesBuffer = new ArrayList<>();
 	private ArrayList<Component> newComponentsBuffer = new ArrayList<>();
 	private ArrayList<Script> newScriptsBuffer = new ArrayList<>();
 	private HashMap<Hitbox, Hitbox> collisions = new HashMap<>();
@@ -128,15 +128,16 @@ public abstract class Scene
 	
 	private void addPendingEntities()
 	{
-		for (Map.Entry<Entity, Entity> pair : newEntitiesBuffer.entrySet())
+		for (int i = 0; i < newEntitiesBuffer.size(); i++)
 		{
-			Entity entity = pair.getKey();
-			Entity parent = pair.getValue();
+			NewEntityData data = newEntitiesBuffer.get(i);
 			
-			if (parent != null) entity.setParent(parent);
-			entity.setScene(this);
+			if (data.parent != null) data.entity.setParent(data.parent);
+			data.entity.setScene(this);
 			
-			entities.add(entity);
+			entities.add(data.entity);
+			
+			data.entity.setRelativePos(data.pos);
 		}
 		
 		newEntitiesBuffer.clear();
@@ -191,15 +192,15 @@ public abstract class Scene
 		return new Vector2i(size);
 	}
 	
-	public Entity instantiate(Entity entity, Entity parent)
+	public Entity instantiate(Entity entity, Vector2f pos, Entity parent)
 	{
-		newEntitiesBuffer.put(entity, parent);
+		newEntitiesBuffer.add(new NewEntityData(entity, parent, pos));
 		return entity;
 	}
 	
-	public Entity instantiate(Entity entity)
+	public Entity instantiate(Entity entity, Vector2f pos)
 	{
-		return instantiate(entity, null);
+		return instantiate(entity, pos, null);
 	}
 	
 	private void render()
@@ -240,6 +241,20 @@ public abstract class Scene
 //				glEnd();
 //				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			}
+		}
+	}
+	
+	class NewEntityData
+	{
+		public Entity entity;
+		public Entity parent;
+		public Vector2f pos;
+		
+		public NewEntityData(Entity entity, Entity parent, Vector2f pos)
+		{
+			this.entity = entity;
+			this.parent = parent;
+			this.pos = pos;
 		}
 	}
 }

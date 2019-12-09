@@ -1,5 +1,7 @@
 package fr.cyphall.cyphengine.core;
 
+import org.joml.Vector2f;
+
 public abstract class Component
 {
 	private Entity entity;
@@ -30,13 +32,13 @@ public abstract class Component
 		return enabled;
 	}
 	
-	public Entity instantiate(Entity entity, Entity parent)
+	public Entity instantiate(Entity entity, Vector2f pos, Entity parent)
 	{
-		return this.entity.instantiate(entity, parent);
+		return this.entity.instantiate(entity, pos, parent);
 	}
 	
-	public Entity instantiate(Entity entity)
+	public Entity instantiate(Entity entity, Vector2f pos)
 	{
-		return this.entity.instantiate(entity);
+		return this.entity.instantiate(entity, pos);
 	}
 }

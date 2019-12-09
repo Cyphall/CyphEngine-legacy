@@ -17,15 +17,7 @@ public class Entity
 	private Entity parent;
 	private Scene scene;
 	
-	public Entity(Vector2f pos)
-	{
-		this.pos = pos;
-	}
-	
-	public Entity()
-	{
-		this(new Vector2f(0));
-	}
+	public Entity(){}
 	
 	public void setRelativePos(Vector2f pos)
 	{
@@ -151,15 +143,15 @@ public class Entity
 		return components.stream().filter(clazz::isInstance).findFirst().orElse(null);
 	}
 	
-	public Entity instantiate(Entity entity, Entity parent)
+	public Entity instantiate(Entity entity, Vector2f pos, Entity parent)
 	{
 		if (!exists()) throw new IllegalStateException("Cannot instantiate an entity in a null scene");
-		return scene.instantiate(entity, parent);
+		return scene.instantiate(entity, pos, parent);
 	}
 	
-	public Entity instantiate(Entity entity)
+	public Entity instantiate(Entity entity, Vector2f pos)
 	{
 		if (!exists()) throw new IllegalStateException("Cannot instantiate an entity in a null scene");
-		return scene.instantiate(entity);
+		return scene.instantiate(entity, pos);
 	}
 }
