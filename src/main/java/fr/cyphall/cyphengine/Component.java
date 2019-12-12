@@ -1,4 +1,4 @@
-package fr.cyphall.cyphengine.core;
+package fr.cyphall.cyphengine;
 
 import org.joml.Vector2f;
 

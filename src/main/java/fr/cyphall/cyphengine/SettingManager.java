@@ -1,4 +1,4 @@
-package fr.cyphall.cyphengine.management;
+package fr.cyphall.cyphengine;
 
 import org.ini4j.Wini;
 

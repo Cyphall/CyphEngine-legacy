@@ -1,4 +1,4 @@
-package fr.cyphall.cyphengine.display;
+package fr.cyphall.cyphengine;
 
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;

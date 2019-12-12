@@ -1,6 +1,4 @@
-package fr.cyphall.cyphengine.component;
-
-import fr.cyphall.cyphengine.core.Component;
+package fr.cyphall.cyphengine;
 
 public class Hitbox extends Component
 {

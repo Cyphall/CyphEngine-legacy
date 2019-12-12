@@ -1,9 +1,5 @@
-package fr.cyphall.cyphengine.core;
+package fr.cyphall.cyphengine;
 
-import fr.cyphall.cyphengine.component.Hitbox;
-import fr.cyphall.cyphengine.component.Script;
-import fr.cyphall.cyphengine.component.SpriteRenderer;
-import fr.cyphall.cyphengine.display.Camera;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 
@@ -62,6 +58,9 @@ public abstract class Scene
 	
 	void update()
 	{
+		destroyPendingEntities();
+		addPendingEntities();
+		addPendingComponents();
 		initPendingScripts();
 		
 		
@@ -92,15 +91,10 @@ public abstract class Scene
 		
 		for (Component script : getComponentsByClass(Script.class))
 		{
-			if (script.isEnabled()) ((Script)script).update();
+			if (script.isEnabled()) ((Script)script).internal_update();
 		}
 		
 		render();
-		
-		
-		destroyPendingEntities();
-		addPendingEntities();
-		addPendingComponents();
 	}
 	
 	private void destroyPendingEntities()

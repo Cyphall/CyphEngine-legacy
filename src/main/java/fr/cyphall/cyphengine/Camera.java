@@ -1,4 +1,4 @@
-package fr.cyphall.cyphengine.display;
+package fr.cyphall.cyphengine;
 
 import org.joml.Matrix4f;
 import org.joml.Vector2f;

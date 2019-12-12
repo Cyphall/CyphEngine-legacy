@@ -1,4 +1,4 @@
-package fr.cyphall.cyphengine.display;
+package fr.cyphall.cyphengine;
 
 import org.apache.commons.io.IOUtils;
 import org.joml.Vector2i;

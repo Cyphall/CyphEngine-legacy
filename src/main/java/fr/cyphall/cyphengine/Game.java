@@ -1,9 +1,4 @@
-package fr.cyphall.cyphengine.core;
-
-import fr.cyphall.cyphengine.display.Window;
-import fr.cyphall.cyphengine.management.InputManager;
-import fr.cyphall.cyphengine.management.SettingManager;
-import fr.cyphall.cyphengine.management.TextureDataManager;
+package fr.cyphall.cyphengine;
 
 import static org.lwjgl.glfw.GLFW.*;
 

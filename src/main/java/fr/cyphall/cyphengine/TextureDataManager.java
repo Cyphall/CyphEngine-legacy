@@ -1,6 +1,4 @@
-package fr.cyphall.cyphengine.management;
-
-import fr.cyphall.cyphengine.display.TextureData;
+package fr.cyphall.cyphengine;
 
 import java.util.HashMap;
 
